@@ -17,6 +17,18 @@ const NavBar = () => {
           </li>
         </ul>
       </nav>
+      <style jsx>{`
+        ul {
+          list-style-type: none;
+          margin-bottom: 2rem;
+        }
+        li {
+          display: inline;
+        }
+        li:not(:first-child) {
+          margin-left: 0.75rem;
+        }
+      `}</style>
     </header>
   );
 };
