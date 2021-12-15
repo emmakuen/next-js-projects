@@ -2,7 +2,7 @@
 .idea
 .vscode
 out
-pages/**/*.js
+# pages/**/*.js
 pages/**/*.map
 pages/**/*.jsx
 src/**/*.js
