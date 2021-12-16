@@ -1,8 +1,22 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { getPosts } from "../lib/posts";
 
-const HomePage = () => {
+export async function getStaticProps() {
+  const posts = await getPosts();
+  return {
+    props: { posts },
+  };
+}
+
+const HomePage = ({ posts }) => {
+  const renderLinks = () =>
+    posts.map((post) => (
+      <li key={post.slug}>
+        <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+      </li>
+    ));
   return (
     <div>
       <Head>
@@ -10,11 +24,7 @@ const HomePage = () => {
         <meta name="description" value="This is my blog" />
       </Head>
       <h1>My Blog</h1>
-      <ul>
-        <li>
-          <Link href="/posts/first-post">Post 1</Link>
-        </li>
-      </ul>
+      <ul>{renderLinks()}</ul>
     </div>
   );
 };

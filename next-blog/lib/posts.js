@@ -20,4 +20,18 @@ const getSlugs = async () => {
     .map((file) => file.slice(0, -suffix.length));
 };
 
-export { getPost, getSlugs };
+const getPosts = async () => {
+  const slugs = await getSlugs();
+  const posts = [];
+  for (const slug of slugs) {
+    const post = await getPost(slug);
+    const linkInfo = {
+      title: post.title,
+      slug,
+    };
+    posts.push(linkInfo);
+  }
+  return posts;
+};
+
+export { getPost, getSlugs, getPosts };
