@@ -1,8 +1,12 @@
 import { readFile } from "fs/promises";
+import { marked } from "marked";
 
 const getPost = async (slug) => {
-  const data = await readFile(`content/posts/${slug}.json`, "utf-8");
-  return JSON.parse(data);
+  const source = await readFile(`content/posts/${slug}.md`, "utf-8");
+  const html = marked(source);
+  return {
+    body: html,
+  };
 };
 
 export { getPost };

@@ -17,7 +17,7 @@ const FirstPost = ({ post }) => {
         <title>{post.title} - My Blog</title>
       </Head>
       <h1>{post.title}</h1>
-      <p>{post.body}</p>
+      <article dangerouslySetInnerHTML={{ __html: post.body }} />
     </div>
   );
 };
