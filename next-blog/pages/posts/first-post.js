@@ -1,14 +1,24 @@
 import React from "react";
 import Head from "next/head";
 
-const FirstPost = () => {
+export async function getStaticProps() {
+  return {
+    props: {
+      title: "First Post",
+      body: "My first post, as static props.",
+    },
+  };
+}
+
+const FirstPost = (props) => {
+  console.log(props);
   return (
     <div>
       <Head>
-        <title>Post 1 - My Blog</title>
+        <title>{props.title} - My Blog</title>
       </Head>
-      <h1>Post 1</h1>
-      <p>This is my first blog post on next-js.</p>
+      <h1>{props.title}</h1>
+      <p>{props.body}</p>
     </div>
   );
 };
