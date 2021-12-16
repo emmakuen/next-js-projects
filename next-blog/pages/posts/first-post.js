@@ -16,6 +16,7 @@ const FirstPost = ({ post }) => {
       <Head>
         <title>{post.title} - My Blog</title>
       </Head>
+      <p>{post.date}</p>
       <h1>{post.title}</h1>
       <article dangerouslySetInnerHTML={{ __html: post.body }} />
     </div>
