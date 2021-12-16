@@ -1,10 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import { readFile } from "fs/promises";
+import { getPost } from "../../lib/posts";
 
 export async function getStaticProps() {
-  const data = await readFile("content/posts/first-post.json", "utf-8");
-  const post = JSON.parse(data);
+  const post = await getPost("first-post");
   return {
     props: { post },
   };
