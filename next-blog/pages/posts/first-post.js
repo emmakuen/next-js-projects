@@ -1,24 +1,24 @@
 import React from "react";
 import Head from "next/head";
+import { readFile } from "fs/promises";
 
 export async function getStaticProps() {
+  const data = await readFile("content/posts/first-post.json", "utf-8");
+  const post = JSON.parse(data);
   return {
-    props: {
-      title: "First Post",
-      body: "My first post, as static props.",
-    },
+    props: { post },
   };
 }
 
-const FirstPost = (props) => {
-  console.log(props);
+const FirstPost = ({ post }) => {
+  console.log({ post });
   return (
     <div>
       <Head>
-        <title>{props.title} - My Blog</title>
+        <title>{post.title} - My Blog</title>
       </Head>
-      <h1>{props.title}</h1>
-      <p>{props.body}</p>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
     </div>
   );
 };
