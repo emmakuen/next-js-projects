@@ -4,13 +4,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --background-color: rgb(230, 230, 230);
+    --link-color: darkred;
+    --text-color: rgb(36, 36, 36);
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     padding: 1rem 2rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 a {
-    color: darkred;
+    color: var(--link-color);
     text-decoration: none;
 }
 

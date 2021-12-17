@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DarkTheme from "./DarkTheme";
 
 const ThemeSwitch = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -13,11 +14,10 @@ const ThemeSwitch = () => {
           border: 1px gray solid;
           border-radius: 5px;
           padding: 5px 10px;
-        }
-        button:hover {
-          background-color: rgba(0, 0, 0, 0.1);
+          color: inherit;
         }
       `}</style>
+      {darkMode && <DarkTheme />}
     </>
   );
 };
