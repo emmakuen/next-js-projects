@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
   return (
@@ -16,11 +17,17 @@ const NavBar = () => {
             <Link href="/contact">Contact</Link>
           </li>
         </ul>
+        <ThemeSwitch />
       </nav>
       <style jsx>{`
+        nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        }
         ul {
           list-style-type: none;
-          margin-bottom: 2rem;
         }
         li {
           display: inline;
