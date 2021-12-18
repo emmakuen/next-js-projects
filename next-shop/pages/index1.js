@@ -1,17 +1,17 @@
 // Option 1: fetch products on the server side (getStaticProps)
 
 import Head from "next/head";
+import { getProducts } from "../lib/products";
 
 export async function getStaticProps(context) {
-  const res = await fetch("http://localhost:1337/products");
-  const products = await res.json();
-
+  const products = await getProducts();
   return {
     props: { products },
   };
 }
 
 export default function Home({ products }) {
+  console.log(products);
   return (
     <>
       <Head>
