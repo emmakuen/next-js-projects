@@ -1,11 +1,17 @@
+// Option 1: fetch products on the server side (getStaticProps)
+
 import Head from "next/head";
 
-const products = [
-  { id: 1, title: "First Product" },
-  { id: 2, title: "Second Product" },
-];
+export async function getStaticProps(context) {
+  const res = await fetch("http://localhost:1337/products");
+  const products = await res.json();
 
-export default function Home() {
+  return {
+    props: { products },
+  };
+}
+
+export default function Home({ products }) {
   return (
     <>
       <Head>

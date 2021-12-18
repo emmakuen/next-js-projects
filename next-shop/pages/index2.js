@@ -1,3 +1,5 @@
+// Option 2: fetch products on the client side (in useEffect hook)
+
 import Head from "next/head";
 
 const products = [
