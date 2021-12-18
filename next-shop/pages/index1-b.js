@@ -1,12 +1,14 @@
-// Option 1: fetch products on the server side (getStaticProps)
+// Option 1-b: fetch products on the server side (getStaticProps)
+// but with Incremental Static Regeneration
 
 import Head from "next/head";
 import { getProducts } from "../lib/products";
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const products = await getProducts();
   return {
     props: { products },
+    revalidate: 30, // seconds
   };
 }
 
