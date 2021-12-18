@@ -1,13 +1,16 @@
 // Option 2: fetch products on the client side (in useEffect hook)
 
 import Head from "next/head";
-
-const products = [
-  { id: 1, title: "First Product" },
-  { id: 2, title: "Second Product" },
-];
+import { useState, useEffect } from "react";
+import { getProducts } from "../lib/products";
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
+
   return (
     <>
       <Head>
