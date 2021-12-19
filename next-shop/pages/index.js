@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { getProducts } from "../lib/products";
 
 export async function getStaticProps() {
@@ -21,7 +22,9 @@ export default function Home({ products }) {
         <h1 className="text-2xl pb-4">Next Shop</h1>
         <ul>
           {products.map((product) => (
-            <li key={product.id}>{product.title}</li>
+            <li key={product.id}>
+              <Link href={`/products/${product.id}`}>{product.title}</Link>
+            </li>
           ))}
         </ul>
       </main>
