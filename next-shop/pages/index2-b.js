@@ -1,14 +1,18 @@
 // Option 2: fetch products on the client side (in useEffect hook)
+// from an internal API route
 
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { getProducts } from "../lib/products";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts().then(setProducts);
+    (async () => {
+      const response = await fetch("/api/products");
+      const fetchedProducts = await response.json();
+      setProducts(fetchedProducts);
+    })();
   }, []);
 
   return (
