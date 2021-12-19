@@ -1,11 +1,16 @@
 import Head from "next/head";
+import { getProducts } from "../lib/products";
 
-const products = [
-  { id: 1, title: "First Product" },
-  { id: 2, title: "Second Product" },
-];
+export async function getStaticProps() {
+  const products = await getProducts();
+  return {
+    props: { products },
+    revalidate: 30, // seconds
+  };
+}
 
-export default function Home() {
+export default function Home({ products }) {
+  console.log(products);
   return (
     <>
       <Head>
