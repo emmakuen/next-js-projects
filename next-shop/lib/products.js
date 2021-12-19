@@ -1,3 +1,7 @@
+import { fetchJson } from "./api";
+
+const CMS_URL = "http://localhost:1337";
+
 function stripProduct(product) {
   return {
     id: product.id,
@@ -6,20 +10,17 @@ function stripProduct(product) {
 }
 
 export async function getProducts() {
-  const res = await fetch("http://localhost:1337/products");
-  const products = await res.json();
+  const products = await fetchJson(`${CMS_URL}/products`);
   return products.map(stripProduct);
 }
 
 export async function getProductIds() {
-  const res = await fetch("http://localhost:1337/products");
-  const products = await res.json();
+  const products = await fetchJson(`${CMS_URL}/products`);
   return products.map((product) => product.id);
 }
 
 export async function getProduct(id) {
-  const res = await fetch(`http://localhost:1337/products/${id}`);
-  const product = await res.json();
+  const product = await fetchJson(`${CMS_URL}/products/${id}`);
   return {
     id: id,
     title: product.title,

@@ -8,16 +8,20 @@ export async function getStaticPaths() {
     paths: ids.map((id) => ({
       params: { id: id.toString() },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params: { id } }) {
-  const product = await getProduct(id);
-  return {
-    props: { product },
-    revalidate: 30, // seconds
-  };
+  try {
+    const product = await getProduct(id);
+    return {
+      props: { product },
+      revalidate: 30, // seconds
+    };
+  } catch (err) {
+    return { notFound: true };
+  }
 }
 
 const Product = ({ product }) => {
