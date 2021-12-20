@@ -27,5 +27,7 @@ export async function getProduct(id) {
     id: id,
     title: product.title,
     description: product.description,
+    pictureUrl: `${CMS_URL}${product.picture.url}`,
+    price: product.price.toFixed(2),
   };
 }

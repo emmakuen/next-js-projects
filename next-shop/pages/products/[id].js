@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { getProduct, getProductIds } from "../../lib/products";
 import { ApiError } from "../../lib/api";
 
@@ -34,9 +35,15 @@ const Product = ({ product }) => {
       <Head>
         <title>{product.title} - Next Shop</title>
       </Head>
-      <main className="px-6 py-4">
+      <main className="px-6 lg:px-20 md:px-10 py-4">
         <h1 className="text-2xl pb-4">{product.title}</h1>
-        <p>{product.description}</p>
+        <div className="flex flex-col lg:flex-row">
+          <Image src={product.pictureUrl} alt="" width={640} height={480} />
+          <div className="mt-4 lg:ml-10 lg:mt-0 lg:w-1/2">
+            <p className="text-sm">{product.description}</p>
+            <p className="text-lg font-bold mt-2">${product.price}</p>
+          </div>
+        </div>
       </main>
     </>
   );
