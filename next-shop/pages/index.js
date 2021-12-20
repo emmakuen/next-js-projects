@@ -20,7 +20,7 @@ export default function Home({ products }) {
       </Head>
       <main className="px-6 py-4">
         <h1 className="text-2xl pb-4">Next Shop</h1>
-        <ul>
+        <ul className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 place-items-center">
           {products.map((product) => (
             <li key={product.id}>
               <ProductCard product={product} />
