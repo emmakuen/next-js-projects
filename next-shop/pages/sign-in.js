@@ -5,18 +5,31 @@ import Field from "../components/Field";
 import Button from "../components/Button";
 import { fetchJson } from "../lib/api";
 
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [status, setStatus] = useState({ loading: false, error: false });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetchJson("http://localhost:1337/auth/local", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ identifier: email, password }),
-    });
-    console.log(res);
+    setStatus({ loading: true, error: false });
+    await sleep(2000);
+    try {
+      const res = await fetchJson("http://localhost:1337/auth/local", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier: email, password }),
+      });
+      setStatus({ loading: false, error: false });
+      console.log(res);
+    } catch (err) {
+      setStatus({ loading: false, error: true });
+    }
   };
 
   return (
@@ -42,7 +55,12 @@ const SignIn = () => {
               required
             />
           </Field>
-          <Button type="submit">Sign In</Button>
+          {status.error && <p className="text-red-500">Invalid Credentials</p>}
+          {status.loading ? (
+            <p className="">Loading...</p>
+          ) : (
+            <Button type="submit">Sign In</Button>
+          )}
         </form>
       </div>
     </Page>
