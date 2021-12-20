@@ -7,6 +7,7 @@ function stripProduct(product) {
     id: product.id,
     title: product.title,
     price: product.price.toFixed(2),
+    pictureUrl: `${CMS_URL}${product.picture.url}`,
   };
 }
 
