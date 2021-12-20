@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getProducts } from "../lib/products";
+import ProductCard from "../components/ProductCard";
 
 export async function getStaticProps() {
   const products = await getProducts();
@@ -22,7 +23,7 @@ export default function Home({ products }) {
         <ul>
           {products.map((product) => (
             <li key={product.id}>
-              <Link href={`/products/${product.id}`}>{product.title}</Link>
+              <ProductCard product={product} />
             </li>
           ))}
         </ul>
