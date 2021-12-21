@@ -16,6 +16,11 @@ const NavBar = () => {
     })();
   }, []);
 
+  const handleSignout = async () => {
+    await fetchJson("/api/logout");
+    setUser(undefined);
+  };
+
   return (
     <nav className="px-2 py-1 text-sm lg:text-base">
       <ul className="flex gap-2">
@@ -27,7 +32,7 @@ const NavBar = () => {
           <>
             <li>{user.name}</li>
             <li>
-              <button>Sign Out</button>
+              <button onClick={handleSignout}>Sign Out</button>
             </li>
           </>
         ) : (
