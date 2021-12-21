@@ -12,7 +12,6 @@ const sleep = (ms) => {
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
   const [status, setStatus] = useState({ loading: false, error: false });
 
   const handleSubmit = async (e) => {
@@ -20,10 +19,10 @@ const SignIn = () => {
     setStatus({ loading: true, error: false });
     await sleep(2000);
     try {
-      const res = await fetchJson("http://localhost:1337/auth/local", {
+      const res = await fetchJson("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ identifier: email, password }),
+        body: JSON.stringify({ email, password }),
       });
       setStatus({ loading: false, error: false });
       console.log(res);
