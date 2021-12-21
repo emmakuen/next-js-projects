@@ -47,7 +47,7 @@ const SignIn = () => {
               required
             />
           </Field>
-          <Field label="password">
+          <Field label="Password">
             <Input
               type="password"
               value={password}
