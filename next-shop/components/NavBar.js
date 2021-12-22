@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { fetchJson } from "../lib/api";
+import { useQuery } from "react-query";
 
 const NavBar = () => {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    (async () => {
+  const query = useQuery(
+    "user",
+    async () => {
       try {
-        const retrievedUser = await fetchJson("/api/user");
-        setUser(retrievedUser);
+        return await fetchJson("/api/user");
       } catch (err) {
-        // not signed in
+        return undefined;
       }
-    })();
-  }, []);
+    },
+    {
+      cacheTime: Infinity,
+      staleTime: 30_000, // milliseconds
+    }
+  );
+  const user = query.data;
 
   const handleSignout = async () => {
     await fetchJson("/api/logout");
-    setUser(undefined);
+    // TODO: FIX IT setUser(undefined);
   };
 
   return (
