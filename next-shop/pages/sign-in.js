@@ -5,7 +5,7 @@ import Input from "../components/Input";
 import Field from "../components/Field";
 import Button from "../components/Button";
 import { fetchJson } from "../lib/api";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -15,6 +15,7 @@ const SignIn = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const queryClient = useQueryClient();
   const mutation = useMutation(() =>
     fetchJson("/api/login", {
       method: "POST",
@@ -27,6 +28,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const user = await mutation.mutateAsync();
+      queryClient.setQueriesData("user", user);
       router.push("/");
     } catch (err) {
       // mutation.isError will be true
