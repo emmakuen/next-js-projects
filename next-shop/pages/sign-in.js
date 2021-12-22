@@ -6,10 +6,6 @@ import Field from "../components/Field";
 import Button from "../components/Button";
 import { useSignIn } from "../hooks/user";
 
-const sleep = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
 const SignIn = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
