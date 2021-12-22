@@ -14,6 +14,9 @@ const NavBar = () => {
         <li role="separator" className="flex-1" />
         {user ? (
           <>
+            <li>
+              <Link href="/card">Card</Link>
+            </li>
             <li>{user.name}</li>
             <li>
               <button onClick={signout}>Sign Out</button>
