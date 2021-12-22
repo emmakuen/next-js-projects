@@ -4,8 +4,7 @@ import Page from "../components/Page";
 import Input from "../components/Input";
 import Field from "../components/Field";
 import Button from "../components/Button";
-import { fetchJson } from "../lib/api";
-import { useMutation, useQueryClient } from "react-query";
+import { useSignIn } from "../hooks/user";
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -15,24 +14,12 @@ const SignIn = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const queryClient = useQueryClient();
-  const mutation = useMutation(() =>
-    fetchJson("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-  );
+  const { signIn, signInError, signInLoading } = useSignIn();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const user = await mutation.mutateAsync();
-      queryClient.setQueriesData("user", user);
-      router.push("/");
-    } catch (err) {
-      // mutation.isError will be true
-    }
+    const valid = await signIn(email, password);
+    if (valid) router.push("/");
   };
 
   return (
@@ -58,10 +45,8 @@ const SignIn = () => {
               required
             />
           </Field>
-          {mutation.isError && (
-            <p className="text-red-500">Invalid Credentials</p>
-          )}
-          {mutation.isLoading ? (
+          {signInError && <p className="text-red-500">Invalid Credentials</p>}
+          {signInLoading ? (
             <p className="">Loading...</p>
           ) : (
             <Button type="submit">Sign In</Button>
