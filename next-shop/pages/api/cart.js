@@ -12,7 +12,7 @@ export default async function handleCart(req, res) {
     const cartItems = await fetchJson(`${CMS_URL}/cart-items`, {
       headers: { Authorization: `Bearer ${jwt}` },
     });
-    res.status(200).json(cartItems.map(stripCardItem));
+    res.status(200).json(addGrandTotal(cartItems.map(stripCardItem)));
   } catch (err) {
     res.status(401).end();
   }
@@ -26,6 +26,24 @@ const stripCardItem = (item) => {
       title: item.product.title,
       price: item.product.price,
     },
+    total: item.product.price * item.quantity,
     quantity: item.quantity,
   };
+};
+
+function addGrandTotal(cartItems) {
+  try {
+    const prices = cartItems.map((item) => item.product.price);
+    const grandTotal = prices.reduce(add, 0);
+    return {
+      items: cartItems,
+      grandTotal,
+    };
+  } catch (err) {
+    return undefined;
+  }
+}
+
+const add = (accumulator, a) => {
+  return accumulator + a;
 };

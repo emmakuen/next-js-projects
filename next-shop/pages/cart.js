@@ -5,12 +5,12 @@ import { useCart } from "../hooks/cart";
 import CartTable from "../components/CartTable";
 
 const Cart = () => {
-  const cartItems = useCart();
-
-  console.log("cart page", cartItems);
+  const cart = useCart();
   return (
     <Page title="Cart">
-      <CartTable cartItems={cartItems} />
+      {cart && (
+        <CartTable cartItems={cart.items} grandTotal={cart.grandTotal} />
+      )}
     </Page>
   );
 };
