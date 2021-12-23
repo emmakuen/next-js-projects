@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { fetchJson } from "../lib/api";
 
 const CART_QUERY_KEY = "cart";
