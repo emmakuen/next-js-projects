@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const ProductCard = ({ product }) => {
+const ProductCart = ({ product }) => {
   return (
     <div className="border w-80 shadow hover:shadow-xl">
       <Link href={`/products/${product.id}`}>
@@ -23,4 +23,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default ProductCart;

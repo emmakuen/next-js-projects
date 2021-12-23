@@ -15,7 +15,7 @@ const NavBar = () => {
         {user ? (
           <>
             <li>
-              <Link href="/card">Card</Link>
+              <Link href="/cart">Cart</Link>
             </li>
             <li>{user.name}</li>
             <li>

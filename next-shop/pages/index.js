@@ -1,6 +1,6 @@
 import Page from "../components/Page";
 import { getProducts } from "../lib/products";
-import ProductCard from "../components/ProductCard";
+import ProductCart from "../components/ProductCart";
 
 export async function getStaticProps() {
   const products = await getProducts();
@@ -16,7 +16,7 @@ export default function Home({ products }) {
       <ul className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 lg:gap-10 place-items-center place-content-center max-w-7xl m-auto">
         {products.map((product) => (
           <li key={product.id}>
-            <ProductCard product={product} />
+            <ProductCart product={product} />
           </li>
         ))}
       </ul>
