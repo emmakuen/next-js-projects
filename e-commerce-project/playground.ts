@@ -1,23 +1,4 @@
 export default function play() {
-
-    interface Person {
-        kind: "business" | "academic" | "other",
-        name: string,
-        age: number
-    }
-
-    interface Person {
-        prop1: string,
-        prop2: number
-    }
-
-    const person: Person = {
-        prop1: 'prop1',
-        prop2: 1,
-        name: 'Bob',
-        kind: 'academic',
-        age: 45
-    }
     
 }
 
@@ -119,34 +100,45 @@ export default function play() {
 
 
 // ----------- UNION NARROWING --------------- //
-    // type RaceCar = {
-    //     name: string,
-    //     maxSpeed: 300,
-    //     team: string
-    // }
+    type RaceCar = {
+        name: string,
+        maxSpeed: 300,
+        team: string
+    }
 
-    // type NormalCar = {
-    //     name: string,
-    //     maxSpeed: 200,
-    //     seats: number
-    // }
+    type NormalCar = {
+        name: string,
+        maxSpeed: 200,
+        seats: number
+    }
 
-    // type Car = RaceCar | NormalCar
+    type SUVCar = {
+        name: string,
+        maxSpeed: 150,
+        isCarbonFree: boolean
+    }
 
-    // const logCarInfo = (car: Car) => {
-    //     console.log(car.name)
+    type Car = RaceCar | NormalCar | SUVCar
 
-    //     switch(car.maxSpeed) {
-    //         case 300:
-    //             console.log(car.team)
-    //             break
-    //         case 200: 
-    //             console.log(car.seats)
-    //             break
-    //         default:
-    //             console.log(car) // Never type
-    //     }
-    // }
+    const logCarInfo = (car: Car) => {
+        console.log(car.name)
+
+        switch(car.maxSpeed) {
+            case 300:
+                console.log(car.team)
+                break
+            case 200: 
+                console.log(car.seats)
+                break
+            case 150:
+                console.log(car.isCarbonFree)
+                break
+            default:
+                // ensure all cases are addressed, if not it throws error
+                const _never: never = car
+                return _never
+        }
+    }
 
 // ------------ TYPE CASTING ------------ //
     // console.log((car as RaceCar).team)
