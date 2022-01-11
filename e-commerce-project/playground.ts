@@ -18,15 +18,15 @@ export default function play() {
     // }
 
 // ------------ GENERIC OBJECT TYPES ------------ //
-const printInfo = (object: {[key: string]: string | number | boolean}) => {
-    console.log(object)
-}
+// const printInfo = (object: {[key: string]: string | number | boolean}) => {
+//     console.log(object)
+// }
 
-printInfo({
-    name: 'Bob',
-    isMarried: false,
-    age: 23
-})
+// printInfo({
+//     name: 'Bob',
+//     isMarried: false,
+//     age: 23
+// })
 
 
 // --------------- CLASS ---------------- //
@@ -57,6 +57,16 @@ printInfo({
     //     console.log(info)
     //     return info
     // }
+
+
+// --------------- UNKNOWN TYPE ------------- //
+const printInfo = (object: {[key: string]: unknown}) => {
+    // Unknown type forces you to determine what a variable typed as unknown is, 
+    // either through type casting or type narrowing
+    if (typeof object.key === "string") {
+        console.log(object.key.toUpperCase())
+    }
+}
 
 
 // --------------- NARROWING ------------- //
