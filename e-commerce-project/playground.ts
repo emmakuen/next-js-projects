@@ -1,5 +1,23 @@
 export default function play() {
 
+    interface Person {
+        kind: "business" | "academic" | "other",
+        name: string,
+        age: number
+    }
+
+    interface Person {
+        prop1: string,
+        prop2: number
+    }
+
+    const person: Person = {
+        prop1: 'prop1',
+        prop2: 1,
+        name: 'Bob',
+        kind: 'academic',
+        age: 45
+    }
     
 }
 
@@ -166,3 +184,26 @@ export default function play() {
     //         console.log(employee) // Never type
     //     }
     // }
+
+
+// ------------ INTERFACE: DECLARATION MERGING ------------ //
+
+// interface Person {
+//     kind: "business" | "academic" | "other",
+//     name: string,
+//     age: number
+// }
+
+// interface Person {
+//     prop1: string,
+//     prop2: number
+// }
+
+// // ---- two interface merges into one -------- //
+// const person: Person = {
+//     prop1: 'prop1',
+//     prop2: 1,
+//     name: 'Bob',
+//     kind: 'academic',
+//     age: 45
+// }
