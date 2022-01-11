@@ -60,13 +60,32 @@ export default function play() {
 
 
 // --------------- UNKNOWN TYPE ------------- //
-const printInfo = (object: {[key: string]: unknown}) => {
-    // Unknown type forces you to determine what a variable typed as unknown is, 
-    // either through type casting or type narrowing
-    if (typeof object.key === "string") {
-        console.log(object.key.toUpperCase())
-    }
-}
+// const printInfo = (object: {[key: string]: unknown}) => {
+//     // Unknown type forces you to determine what a variable typed as unknown is, 
+//     // either through type casting or type narrowing
+//     if (typeof object.key === "string") {
+//         console.log(object.key.toUpperCase())
+//     }
+// }
+
+
+// --------------- VOID TYPE ------------- //
+    // type anyFunction = () => any
+    // type voidFunction = () => void
+
+    // function firstFunction(x: anyFunction): void {
+    //     // result is of ANY type
+    //     const result = x()
+    //     // no error appears when result is called
+    //     result()
+    // }
+    // function sayHello(x: voidFunction): void {
+    //     // result is of VOID type
+    //     const result = x()
+    //     // throws error as void is not callable
+    //     result()
+    // }
+
 
 
 // --------------- NARROWING ------------- //
