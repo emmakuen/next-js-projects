@@ -17,6 +17,17 @@ export default function play() {
     //     (name: string, age: number):string
     // }
 
+// ------------ GENERIC OBJECT TYPES ------------ //
+const printInfo = (object: {[key: string]: string | number | boolean}) => {
+    console.log(object)
+}
+
+printInfo({
+    name: 'Bob',
+    isMarried: false,
+    age: 23
+})
+
 
 // --------------- CLASS ---------------- //
     // class Person {
@@ -100,45 +111,47 @@ export default function play() {
 
 
 // ----------- UNION NARROWING --------------- //
-    type RaceCar = {
-        name: string,
-        maxSpeed: 300,
-        team: string
-    }
+    // type RaceCar = {
+    //     name: string,
+    //     maxSpeed: 300,
+    //     team: string
+    // }
 
-    type NormalCar = {
-        name: string,
-        maxSpeed: 200,
-        seats: number
-    }
+    // type NormalCar = {
+    //     name: string,
+    //     maxSpeed: 200,
+    //     seats: number
+    // }
 
-    type SUVCar = {
-        name: string,
-        maxSpeed: 150,
-        isCarbonFree: boolean
-    }
+    // type SUVCar = {
+    //     name: string,
+    //     maxSpeed: 150,
+    //     isCarbonFree: boolean
+    // }
 
-    type Car = RaceCar | NormalCar | SUVCar
+    // type Car = RaceCar | NormalCar | SUVCar
 
-    const logCarInfo = (car: Car) => {
-        console.log(car.name)
+    // const logCarInfo = (car: Car) => {
+    //     console.log(car.name)
 
-        switch(car.maxSpeed) {
-            case 300:
-                console.log(car.team)
-                break
-            case 200: 
-                console.log(car.seats)
-                break
-            case 150:
-                console.log(car.isCarbonFree)
-                break
-            default:
-                // ensure all cases are addressed, if not it throws error
-                const _never: never = car
-                return _never
-        }
-    }
+    //     switch(car.maxSpeed) {
+    //         case 300:
+    //             console.log(car.team)
+    //             break
+    //         case 200: 
+    //             console.log(car.seats)
+    //             break
+    //         case 150:
+    //             console.log(car.isCarbonFree)
+    //             break
+    //         default:
+
+    //             // ------------ USAGE OF NEVER ----------- //
+    //             // ensure all cases are addressed, if not it throws error
+    //             const _never: never = car
+    //             return _never
+    //     }
+    // }
 
 // ------------ TYPE CASTING ------------ //
     // console.log((car as RaceCar).team)
