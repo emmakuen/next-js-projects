@@ -88,17 +88,44 @@ export default function play() {
 
 
 // --------------- CUSTOM GENERIC TYPE ------------- //
-    class Logger<T> {
+    // class Logger<T> {
+    //     log(items: Array<T>, callback: (item: T) => void) {
+    //         items.forEach((item) => callback(item))
+    //     }
+    // }
+
+    // const logger = new Logger<string>()
+
+    // const dogs = ['golden retriever', 'beagle', 'german shepherd']
+    // logger.log(dogs, (dog) => {
+    //     console.log(dog)
+    // })
+
+
+    // --------------- GENERIC EXTENDS ------------- //
+
+    interface Person {
+        name: string
+        age: number
+    }
+
+    class Student implements Person {
+        name = ''
+        age = 1
+    }
+
+    class Logger<T extends Person> {
         log(items: Array<T>, callback: (item: T) => void) {
             items.forEach((item) => callback(item))
         }
     }
 
-    const logger = new Logger<string>()
+    const logger = new Logger<Student>()
 
     const dogs = ['golden retriever', 'beagle', 'german shepherd']
-    logger.log(dogs, (dog) => {
-        console.log(dog)
+    const students = [{name: 'Bob', age: 20}, {name: 'Angela', age: 30}]
+    logger.log(students, (student) => {
+        console.log(student)
     })
 
 
