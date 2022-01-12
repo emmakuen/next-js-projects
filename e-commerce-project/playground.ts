@@ -87,6 +87,20 @@ export default function play() {
     // }
 
 
+// --------------- CUSTOM GENERIC TYPE ------------- //
+    class Logger<T> {
+        log(items: Array<T>, callback: (item: T) => void) {
+            items.forEach((item) => callback(item))
+        }
+    }
+
+    const logger = new Logger<string>()
+
+    const dogs = ['golden retriever', 'beagle', 'german shepherd']
+    logger.log(dogs, (dog) => {
+        console.log(dog)
+    })
+
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
