@@ -154,6 +154,35 @@ export default function play() {
     //     console.log(businessman)
     // })
 
+// --------------- GENERIC TYPES WITH EXTENDS ------------- //
+
+    interface Person {
+        name: string
+    }
+
+    interface Student extends Person {
+        age: number
+    }
+
+    type StudentInfo<T extends Student = Student> = {
+        data: T
+        grades: number[]
+    }
+
+    const logStudentInfo = (info: StudentInfo) => {
+        console.log(info.data.age)
+        console.log(info.data.name)
+    }
+
+    const info = {
+        data: {
+            name: 'Bob',
+            age: 18,
+        }, 
+        grades: [1,2,3,4,5]
+    }
+
+    logStudentInfo(info)
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
