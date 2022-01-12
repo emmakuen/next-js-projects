@@ -156,22 +156,59 @@ export default function play() {
 
 // --------------- GENERIC TYPES WITH EXTENDS ------------- //
 
-    interface Person {
+    // interface Person {
+    //     name: string
+    // }
+
+    // interface Student extends Person {
+    //     age: number
+    // }
+
+    // type StudentInfo<T extends Student = Student> = {
+    //     data: T
+    //     grades: number[]
+    // }
+
+    // const logStudentInfo = (info: StudentInfo) => {
+    //     console.log(info.data.age)
+    //     console.log(info.data.name)
+    // }
+
+    // const info = {
+    //     data: {
+    //         name: 'Bob',
+    //         age: 18,
+    //     }, 
+    //     grades: [1,2,3,4,5]
+    // }
+
+    // logStudentInfo(info)
+
+
+// --------------- TERNARY WITH GENERICS ------------- //
+
+    interface Student {
+        age: number
         name: string
     }
 
-    interface Student extends Person {
-        age: number
+    interface Car {
+        model: string,
+        year: number
     }
 
-    type StudentInfo<T extends Student = Student> = {
+    type StudentInfo<T extends any = Student> = T extends Student ? {
         data: T
         grades: number[]
-    }
+    } : string  // if T extends Student info is {} else string
 
     const logStudentInfo = (info: StudentInfo) => {
-        console.log(info.data.age)
+        console.log(info.data.age) // info is type of Student
         console.log(info.data.name)
+    }
+
+    const logStudentInfo2 = (info: StudentInfo<Car>) => {
+        console.log(info) // info is type of string
     }
 
     const info = {
@@ -182,7 +219,10 @@ export default function play() {
         grades: [1,2,3,4,5]
     }
 
+    const stringInfo = 'This is info'
+
     logStudentInfo(info)
+    logStudentInfo2(stringInfo)
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
