@@ -102,31 +102,57 @@ export default function play() {
     // })
 
 
-    // --------------- GENERIC EXTENDS ------------- //
+// --------------- GENERIC EXTENDS ------------- //
 
-    interface Person {
-        name: string
-        age: number
-    }
+    // interface Person {
+    //     name: string
+    //     age: number
+    // }
 
-    class Student implements Person {
-        name = ''
-        age = 1
-    }
+    // class Student implements Person {
+    //     name = ''
+    //     age = 1
+    // }
 
-    class Logger<T extends Person> {
-        log(items: Array<T>, callback: (item: T) => void) {
-            items.forEach((item) => callback(item))
-        }
-    }
+    // class Logger<T extends Person> {
+    //     log(items: Array<T>, callback: (item: T) => void) {
+    //         items.forEach((item) => callback(item))
+    //     }
+    // }
 
-    const logger = new Logger<Student>()
+    // const logger = new Logger<Student>()
 
-    const dogs = ['golden retriever', 'beagle', 'german shepherd']
-    const students = [{name: 'Bob', age: 20}, {name: 'Angela', age: 30}]
-    logger.log(students, (student) => {
-        console.log(student)
-    })
+    // const students = [{name: 'Bob', age: 20}, {name: 'Angela', age: 30}]
+    // logger.log(students, (student) => {
+    //     console.log(student)
+    // })
+
+
+// --------------- DEFAULT VALUES OF GENERICS ------------- //
+
+    // interface Person {
+    //     name: string
+    //     age: number
+    // }
+
+    // type BusinessPerson = {
+    //     name: string
+    //     age: number
+    //     company: string
+    // }
+    
+    // class Logger<T extends Person = BusinessPerson> { // Default value has to meet requirements Person
+    //     log(items: Array<T>, callback: (item: T) => void) {
+    //         items.forEach((item) => callback(item))
+    //     }
+    // }
+
+    // const logger = new Logger() // Type doesn't have to be specified due to the default value
+
+    // const businessmen = [{name: 'Bob', age: 20, company: 'Tesla'}, {name: 'Angela', age: 30, company: 'Kia'}]
+    // logger.log(businessmen, (businessman) => { 
+    //     console.log(businessman)
+    // })
 
 
 // --------------- NARROWING ------------- //
