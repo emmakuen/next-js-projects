@@ -18,15 +18,15 @@ export default function play() {
     // }
 
 // ------------ GENERIC OBJECT TYPES ------------ //
-// const printInfo = (object: {[key: string]: string | number | boolean}) => {
-//     console.log(object)
-// }
+    // const printInfo = (object: {[key: string]: string | number | boolean}) => {
+    //     console.log(object)
+    // }
 
-// printInfo({
-//     name: 'Bob',
-//     isMarried: false,
-//     age: 23
-// })
+    // printInfo({
+    //     name: 'Bob',
+    //     isMarried: false,
+    //     age: 23
+    // })
 
 
 // --------------- CLASS ---------------- //
@@ -60,13 +60,13 @@ export default function play() {
 
 
 // --------------- UNKNOWN TYPE ------------- //
-// const printInfo = (object: {[key: string]: unknown}) => {
-//     // Unknown type forces you to determine what a variable typed as unknown is, 
-//     // either through type casting or type narrowing
-//     if (typeof object.key === "string") {
-//         console.log(object.key.toUpperCase())
-//     }
-// }
+    // const printInfo = (object: {[key: string]: unknown}) => {
+    //     // Unknown type forces you to determine what a variable typed as unknown is, 
+    //     // either through type casting or type narrowing
+    //     if (typeof object.key === "string") {
+    //         console.log(object.key.toUpperCase())
+    //     }
+    // }
 
 
 // --------------- VOID TYPE ------------- //
@@ -237,15 +237,15 @@ export default function play() {
     // type Type3 = SingleType<Person>
 
 // ----------------- INDEXED ACCESS TYPES ----------- //
-// Indexed type syntax only available for keys being string or number
-type CustomArray<T = string> = {
-    [index: number]: T;
-}
+    // Indexed type syntax only available for keys being string or number
+    // type CustomArray<T = string> = {
+    //     [index: number]: T;
+    // }
 
-const items: CustomArray = ['1', '2', '3']
-const counts: CustomArray<number> = [1, 2, 3]
+    // const items: CustomArray = ['1', '2', '3']
+    // const counts: CustomArray<number> = [1, 2, 3]
 
-type Single = CustomArray[number]
+    // type Single = CustomArray[number]
 
 
 
@@ -383,22 +383,22 @@ type Single = CustomArray[number]
 
 // ------------ INTERFACE: DECLARATION MERGING ------------ //
 
-// interface Person {
-//     kind: "business" | "academic" | "other",
-//     name: string,
-//     age: number
-// }
+    // interface Person {
+    //     kind: "business" | "academic" | "other",
+    //     name: string,
+    //     age: number
+    // }
 
-// interface Person {
-//     prop1: string,
-//     prop2: number
-// }
+    // interface Person {
+    //     prop1: string,
+    //     prop2: number
+    // }
 
-// // ---- two interface merges into one -------- //
-// const person: Person = {
-//     prop1: 'prop1',
-//     prop2: 1,
-//     name: 'Bob',
-//     kind: 'academic',
-//     age: 45
-// }
+    // // ---- two interface merges into one -------- //
+    // const person: Person = {
+    //     prop1: 'prop1',
+    //     prop2: 1,
+    //     name: 'Bob',
+    //     kind: 'academic',
+    //     age: 45
+    // }
