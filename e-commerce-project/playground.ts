@@ -226,15 +226,28 @@ export default function play() {
 
     // --------------- CREATE TYPE FROM ARRAY ELEMENTS ------------- //
 
-    interface Person {
-        name: string
-    }
+    // interface Person {
+    //     name: string
+    // }
 
-    type SingleType<T> = T extends any[] ? T[number] : T
+    // type SingleType<T> = T extends any[] ? T[number] : T
 
-    type Type1 = SingleType<string[]>
-    type Type2 = SingleType<number[]>
-    type Type3 = SingleType<Person>
+    // type Type1 = SingleType<string[]>
+    // type Type2 = SingleType<number[]>
+    // type Type3 = SingleType<Person>
+
+// ----------------- INDEXED ACCESS TYPES ----------- //
+// Indexed type syntax only available for keys being string or number
+type CustomArray<T = string> = {
+    [index: number]: T;
+}
+
+const items: CustomArray = ['1', '2', '3']
+const counts: CustomArray<number> = [1, 2, 3]
+
+type Single = CustomArray[number]
+
+
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
