@@ -248,6 +248,16 @@ export default function play() {
     // type Single = CustomArray[number]
 
 
+// ----------------- MAPPED TYPES ----------- //
+type CustomObject = {
+    [key: string]: string
+}
+
+const person: CustomObject = {
+    name: 'John',
+    age: '23', // assigning number would produce error
+    city: 'London',
+}
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
