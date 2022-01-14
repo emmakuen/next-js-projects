@@ -187,42 +187,54 @@ export default function play() {
 
 // --------------- TERNARY WITH GENERICS ------------- //
 
-    interface Student {
-        age: number
+    // interface Student {
+    //     age: number
+    //     name: string
+    // }
+
+    // interface Car {
+    //     model: string,
+    //     year: number
+    // }
+
+    // type StudentInfo<T extends any = Student> = T extends Student ? {
+    //     data: T
+    //     grades: number[]
+    // } : string  // if T extends Student info is {} else string
+
+    // const logStudentInfo = (info: StudentInfo) => {
+    //     console.log(info.data.age) // info is type of Student
+    //     console.log(info.data.name)
+    // }
+
+    // const logStudentInfo2 = (info: StudentInfo<Car>) => {
+    //     console.log(info) // info is type of string
+    // }
+
+    // const info = {
+    //     data: {
+    //         name: 'Bob',
+    //         age: 18,
+    //     }, 
+    //     grades: [1,2,3,4,5]
+    // }
+
+    // const stringInfo = 'This is info'
+
+    // logStudentInfo(info)
+    // logStudentInfo2(stringInfo)
+
+    // --------------- CREATE TYPE FROM ARRAY ELEMENTS ------------- //
+
+    interface Person {
         name: string
     }
 
-    interface Car {
-        model: string,
-        year: number
-    }
+    type SingleType<T> = T extends any[] ? T[number] : T
 
-    type StudentInfo<T extends any = Student> = T extends Student ? {
-        data: T
-        grades: number[]
-    } : string  // if T extends Student info is {} else string
-
-    const logStudentInfo = (info: StudentInfo) => {
-        console.log(info.data.age) // info is type of Student
-        console.log(info.data.name)
-    }
-
-    const logStudentInfo2 = (info: StudentInfo<Car>) => {
-        console.log(info) // info is type of string
-    }
-
-    const info = {
-        data: {
-            name: 'Bob',
-            age: 18,
-        }, 
-        grades: [1,2,3,4,5]
-    }
-
-    const stringInfo = 'This is info'
-
-    logStudentInfo(info)
-    logStudentInfo2(stringInfo)
+    type Type1 = SingleType<string[]>
+    type Type2 = SingleType<number[]>
+    type Type3 = SingleType<Person>
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
