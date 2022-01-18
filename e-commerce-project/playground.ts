@@ -1,5 +1,6 @@
 export default function play() {
     
+
 }
 
 
@@ -249,15 +250,35 @@ export default function play() {
 
 
 // ----------------- MAPPED TYPES ----------- //
-type CustomObject = {
-    [key: string]: string
-}
+    // type CustomObject = {
+    //     [key: string]: string
+    // }
 
-const person: CustomObject = {
-    name: 'John',
-    age: '23', // assigning number would produce error
-    city: 'London',
-}
+    // const person: CustomObject = {
+    //     name: 'John',
+    //     age: '23', // assigning number would produce error
+    //     city: 'London',
+    // }
+
+
+// ----------------- TYPEOF KEYWORD ----------- //
+
+    function logger (...args: any[]) {
+        return 'Hello World'
+    }
+
+    const kindaLogger: typeof logger = (name: string, age: number) => 'Hi'
+    kindaLogger('John', 40)
+
+    const person = {
+        name: "John",
+        age: 40
+    }
+
+    const person2: typeof person = {
+        name: "Jane",
+        age: 20
+    }
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
