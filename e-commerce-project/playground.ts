@@ -282,13 +282,26 @@ export default function play() {
 
 // ----------------- INFER KEYWORD ----------- //
 
-    type ReturnType<T> = T extends () => infer R ? R : number
+    // type ReturnType<T> = T extends () => infer R ? R : number
 
-    function logger() {
-        return true 
+    // function logger() {
+    //     return true 
+    // }
+
+    // const loggerReturn: ReturnType<typeof logger> = true
+
+
+// ----------------- KEYOF OPERATOR ----------- //
+
+    interface Person {
+        name: string,
+        age: number,
+        grades: number[]
     }
 
-    const loggerReturn: ReturnType<typeof logger> = true
+    type PersonKey = keyof Person
+
+    const personKey: PersonKey = 'age' // only keys of Person can be assigned
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
