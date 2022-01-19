@@ -293,15 +293,31 @@ export default function play() {
 
 // ----------------- KEYOF OPERATOR ----------- //
 
-    interface Person {
-        name: string,
-        age: number,
-        grades: number[]
+    // interface Person {
+    //     name: string,
+    //     age: number,
+    //     grades: number[]
+    // }
+
+    // type PersonKey = keyof Person
+
+    // const personKey: PersonKey = 'age' // only keys of Person can be assigned
+
+
+// ----------------- MULTIPLE GENERIC PARAMS ----------- //
+
+    type Logger<
+        T = string,
+        U = number,
+        R = string 
+        > = (param1: T, param2: U) => R
+
+    const isAdult: Logger<string, number, boolean> = (name, age) => {
+        return age > 21
     }
 
-    type PersonKey = keyof Person
+    const logger: Logger = (name, age) => `name: ${name}, age: ${age}`
 
-    const personKey: PersonKey = 'age' // only keys of Person can be assigned
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
