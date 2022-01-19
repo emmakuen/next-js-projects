@@ -1,5 +1,5 @@
 export default function play() {
-    
+
 
 }
 
@@ -225,7 +225,7 @@ export default function play() {
     // logStudentInfo(info)
     // logStudentInfo2(stringInfo)
 
-    // --------------- CREATE TYPE FROM ARRAY ELEMENTS ------------- //
+// --------------- CREATE TYPE FROM ARRAY ELEMENTS ------------- //
 
     // interface Person {
     //     name: string
@@ -263,22 +263,32 @@ export default function play() {
 
 // ----------------- TYPEOF KEYWORD ----------- //
 
-    function logger (...args: any[]) {
-        return 'Hello World'
+    // function logger (...args: any[]) {
+    //     return 'Hello World'
+    // }
+
+    // const kindaLogger: typeof logger = (name: string, age: number) => 'Hi'
+    // kindaLogger('John', 40)
+
+    // const person = {
+    //     name: "John",
+    //     age: 40
+    // }
+
+    // const person2: typeof person = {
+    //     name: "Jane",
+    //     age: 20
+    // }
+
+// ----------------- INFER KEYWORD ----------- //
+
+    type ReturnType<T> = T extends () => infer R ? R : number
+
+    function logger() {
+        return true 
     }
 
-    const kindaLogger: typeof logger = (name: string, age: number) => 'Hi'
-    kindaLogger('John', 40)
-
-    const person = {
-        name: "John",
-        age: 40
-    }
-
-    const person2: typeof person = {
-        name: "Jane",
-        age: 20
-    }
+    const loggerReturn: ReturnType<typeof logger> = true
 
 // --------------- NARROWING ------------- //
     // const random = Math.random() > 0.5 ? 'hello' : [1,2,3,4,5]
