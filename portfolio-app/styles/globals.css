@@ -75,3 +75,34 @@ svg {
   display: flex;
   flex-direction: column;
 }
+
+/* ---------------- Home Styling------------- */
+
+section.home {
+  position: relative;
+}
+
+.home.left-eclipse {
+  position: absolute;
+  top: 15vh;
+  font-size: 390px;
+}
+
+.home.right-eclipse {
+  position: absolute;
+  font-size: 335px;
+  right: -5vw;
+  top: 20vh;
+}
+
+.home.styled-dots {
+  position: absolute;
+  font-size: 104px;
+  top: 105px;
+  right: 50px;
+}
+
+.home.styled-dots.small {
+  right: 300px;
+
+}

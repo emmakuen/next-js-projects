@@ -6,12 +6,14 @@ const Logo = () => {
   return (
     <div className="logo">
       <Link href={routes[0].href} passHref={true}>
-        <Image
-          src="/images/logo.png"
-          alt="emmaku logo"
-          width={70}
-          height={53}
-        />
+        <a>
+          <Image
+            src="/images/logo.png"
+            alt="emmaku logo"
+            width={70}
+            height={53}
+          />
+        </a>
       </Link>
       <style jsx>{`
         .logo {

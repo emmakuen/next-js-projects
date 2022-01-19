@@ -1,5 +1,5 @@
-<svg width="456" height="449" viewBox="0 0 456 449" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_dd_2276_214)">
+<svg viewBox="0 0 456 449" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="left-eclipse" filter="url(#filter0_dd_2276_214)">
         <path
             d="M422 219C422 324.763 289.897 410.5 184.135 410.5C78.3724 410.5 33.1349 314.763 33.1349 209C33.1349 103.237 107.635 3.00004 219.135 41.5C313.635 62 422 113.237 422 219Z"
             fill="#D8E8F2" />
