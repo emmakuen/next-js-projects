@@ -306,17 +306,45 @@ export default function play() {
 
 // ----------------- MULTIPLE GENERIC PARAMS ----------- //
 
-    type Logger<
-        T = string,
-        U = number,
-        R = string 
-        > = (param1: T, param2: U) => R
+    // type Logger<
+    //     T = string,
+    //     U = number,
+    //     R = string 
+    //     > = (param1: T, param2: U) => R
 
-    const isAdult: Logger<string, number, boolean> = (name, age) => {
-        return age > 21
-    }
+    // const isAdult: Logger<string, number, boolean> = (name, age) => {
+    //     return age > 21
+    // }
 
-    const logger: Logger = (name, age) => `name: ${name}, age: ${age}`
+    // const logger: Logger = (name, age) => `name: ${name}, age: ${age}`
+
+// ------------------ INFER RETURN TYPE OF PROMISE ----------------- //
+    // const playground = async () => {
+    //     type Greeting = { message: string }
+    //     const greeting: Greeting = { message: "Hello World!"}
+
+    //     type InferHelloProps<T> = T extends () => Promise<{props: infer Props}> ? Props : never
+
+    //     const getHelloProps = async () => {
+    //         return {
+    //             props: {
+    //                 greeting,
+    //                 data: {
+    //                     from: "Me",
+    //                     to: "You"
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     const sayHello = (props: InferHelloProps<typeof getHelloProps>) => {
+    //         console.log(props.greeting)
+    //     }
+
+    //     const helloProps = await getHelloProps()
+    //     sayHello(helloProps.props)
+
+    // }
 
 
 // --------------- NARROWING ------------- //
