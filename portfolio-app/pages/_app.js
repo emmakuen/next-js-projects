@@ -7,6 +7,10 @@ import LowerRightPolygon from "../components/svg/lower-right-polygon.svg";
 import UpperCircle from "../components/svg/upper-circle.svg";
 import "../styles/globals.css";
 
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+
 function App({ Component, pageProps }) {
   return (
     <div className="page-container">

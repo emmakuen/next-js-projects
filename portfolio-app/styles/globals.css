@@ -78,31 +78,34 @@ svg {
 
 /* ---------------- Home Styling------------- */
 
-section.home {
-  position: relative;
-}
+
 
 .home.left-eclipse {
-  position: absolute;
-  top: 15vh;
+  margin-top: 17vh;
+  margin-left: -28px;
   font-size: 390px;
 }
 
-.home.right-eclipse {
+.home.styled-dots.bottom {
   position: absolute;
+  bottom: 27px;
+  left: 0;
+}
+
+.home.right-eclipse {
   font-size: 335px;
-  right: -5vw;
-  top: 20vh;
+  margin-top: 20vh;
+  position: absolute;
 }
 
 .home.styled-dots {
-  position: absolute;
   font-size: 104px;
-  top: 105px;
-  right: 50px;
+  position: absolute;
 }
 
-.home.styled-dots.small {
-  right: 300px;
-
+.blob {
+  position: absolute;
 }
+
+
+.home.styled-dots.small {}
