@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mulish:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap');
+
+:root {
+  --background-color: #fef9f6;
+  --dark-white: #f1ece8;
+  --dark-blue: #89B2CC;
+  --blue: #9FCEEC;
+  --black: #222222;
+  --grey: #585047;
+  --light-grey: #AEA9A3;
+  --ultra-light-grey: #EEE6DE;
+  --orange: #FFA161;
+  --light-orange: #F9CBAC;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Mulish', sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  z-index: -2;
+}
+
+/* ----------------Background Styling------------- */
+.lower-left-circle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 45vw;
+}
+
+.right-middle-circle {
+  position: absolute;
+  right: -30vw;
+  bottom: -30vh;
+  font-size: 85vw;
+}
+
+.lower-right-polygon {
+  position: absolute;
+  right: -10vw;
+  bottom: -25vh;
+  font-size: 65vw;
+}
+
+.upper-circle {
+  position: absolute;
+  left: -15vw;
+  top: -15vh;
+  font-size: 45vw;
+}
+
+svg {
+  z-index: -1;
+}
+
+.page-container {
+  max-width: 1440px;
+  margin: 45px auto;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+}
