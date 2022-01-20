@@ -25,6 +25,7 @@ const GlassSidebar = () => {
           background-color: #fff;
           height: 550px;
           width: 70px;
+          margin-top: 100px;
           display: flex;
           flex-direction: column;
           justify-content: center;

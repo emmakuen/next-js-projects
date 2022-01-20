@@ -94,18 +94,17 @@ svg {
 
 .home.right-eclipse {
   font-size: 335px;
-  margin-top: 20vh;
   position: absolute;
+  top: 20vh;
 }
 
 .home.styled-dots {
-  font-size: 104px;
   position: absolute;
+  font-size: 104px;
+  top: 4.1vh;
+  right: -45px;
 }
 
-.blob {
-  position: absolute;
-}
 
 
 .home.styled-dots.small {}

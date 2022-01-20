@@ -24,28 +24,33 @@ export default function HomePage() {
         <section className="sidebar-container">
           <RightEclipse className="home right-eclipse" />
           <StyledDots className="home styled-dots" />
-          <GlassSidebar />
+          <GlassSidebar className="glass" />
         </section>
       </main>
       <style jsx>{`
         .home {
           display: flex;
           flex-direction: row;
+          justify-content: space-between;
         }
 
         .image-container {
-          max-width: 550px;
+          width: 550px;
           position: relative;
         }
 
         .animation-container {
           position: absolute;
-          top: 15%;
-          left: 8%;
+          top: 20vh;
+          left: 80px;
         }
 
         .intro-container {
           width: 550px;
+        }
+
+        .sidebar-container {
+          position: relative;
         }
       `}</style>
     </>
