@@ -18,7 +18,7 @@ const NavButton = ({ route }) => {
         }
 
         .nav-button:hover {
-          background-color: ${colors.darkWhite};
+          filter: saturate(2.2);
         }
       `}</style>
     </>

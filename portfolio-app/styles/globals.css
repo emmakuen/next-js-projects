@@ -78,8 +78,6 @@ svg {
 
 /* ---------------- Home Styling------------- */
 
-
-
 .home.left-eclipse {
   margin-top: 17vh;
   margin-left: -28px;
@@ -103,6 +101,10 @@ svg {
   font-size: 104px;
   top: 4.1vh;
   right: -45px;
+}
+
+.tableau-icon {
+  font-size: 2rem !important;
 }
 
 

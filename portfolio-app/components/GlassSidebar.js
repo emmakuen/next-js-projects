@@ -4,6 +4,7 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import TableauIcon from "../components/svg/tableau-logo.svg";
 import { colors } from "../utils/colors";
 
 const GlassSidebar = () => {
@@ -18,6 +19,9 @@ const GlassSidebar = () => {
         </span>
         <span className="icon">
           <FontAwesomeIcon icon={faLinkedin} size="2x" color={colors.blue} />
+        </span>
+        <span className="icon">
+          <TableauIcon className="tableau-icon" />
         </span>
       </div>
       <style jsx>{`
