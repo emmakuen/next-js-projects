@@ -45,7 +45,7 @@ export default function HomePage() {
         </section>
         <section className="sidebar-container">
           <RightEclipse className="home right-eclipse" />
-          <StyledDots className="home styled-dots" />
+          <StyledDots className="home styled-dots top" />
           <GlassSidebar className="glass" />
         </section>
       </main>

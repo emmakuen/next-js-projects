@@ -45,9 +45,9 @@ const GlassSidebar = () => {
       <style jsx>{`
         .glass-sidebar {
           background-color: #fff;
-          height: 550px;
+          height: 500px;
           width: 70px;
-          margin-top: 100px;
+          margin-top: 9.2vh;
           display: flex;
           flex-direction: column;
           justify-content: center;

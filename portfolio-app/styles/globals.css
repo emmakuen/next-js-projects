@@ -84,12 +84,6 @@ svg {
   font-size: 390px;
 }
 
-.home.styled-dots.bottom {
-  position: absolute;
-  bottom: 27px;
-  left: 0;
-}
-
 .home.right-eclipse {
   font-size: 335px;
   position: absolute;
@@ -99,13 +93,22 @@ svg {
 .home.styled-dots {
   position: absolute;
   font-size: 104px;
-  top: 4.1vh;
-  right: -45px;
+}
+
+.home.styled-dots.top {
+  top: 4.5vh;
+  right: 32px;
 }
 
 .home.styled-dots.small {
   position: absolute;
   right: 20px;
+  top: 40px;
+}
+
+.bottom {
+  bottom: 26px;
+  left: 0;
 }
 
 /* --------------Glass Sidebar Styles ----------------- */
