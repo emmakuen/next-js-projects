@@ -12,16 +12,34 @@ const GlassSidebar = () => {
     <div className="glass-wrapper">
       <div className="glass-sidebar">
         <span className="icon">
-          <FontAwesomeIcon icon={faGithub} size="2x" color={colors.blue} />
+          <FontAwesomeIcon
+            icon={faGithub}
+            size="2x"
+            color={colors.blue}
+            className="fa"
+            cursor="pointer"
+          />
         </span>
         <span className="icon">
-          <FontAwesomeIcon icon={faTwitter} size="2x" color={colors.blue} />
+          <FontAwesomeIcon
+            icon={faTwitter}
+            size="2x"
+            color={colors.blue}
+            className="fa"
+            cursor="pointer"
+          />
         </span>
         <span className="icon">
-          <FontAwesomeIcon icon={faLinkedin} size="2x" color={colors.blue} />
+          <FontAwesomeIcon
+            icon={faLinkedin}
+            size="2x"
+            color={colors.blue}
+            cursor="pointer"
+            className="fa"
+          />
         </span>
         <span className="icon">
-          <TableauIcon className="tableau-icon" />
+          <TableauIcon className="tableau-icon" cursor="pointer" />
         </span>
       </div>
       <style jsx>{`
