@@ -5,7 +5,12 @@ const NavButton = ({ route }) => {
   return (
     <>
       <button className="nav-button">
-        <NavLink name={route.name} href={route.href} color={colors.blue} />
+        <NavLink
+          name={route.name}
+          href={route.href}
+          color={colors.blue}
+          hoverColor={colors.blue}
+        />
       </button>
 
       <style jsx>{`

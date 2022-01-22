@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const NavLink = ({ href, name, color }) => {
+const NavLink = ({ href, name, color, hoverColor }) => {
   return (
     <>
       <Link href={href}>
@@ -13,6 +13,10 @@ const NavLink = ({ href, name, color }) => {
           color: ${color};
           font-weight: 600;
           font-size: 18px;
+        }
+
+        a:hover {
+          color: ${hoverColor};
         }
       `}</style>
     </>

@@ -39,6 +39,7 @@ const Navbar = () => {
                 name={route.name}
                 href={route.href}
                 color={colors.grey}
+                hoverColor={colors.blue}
               />
               <div className="underline" style={styleUnderline(route)}></div>
             </li>

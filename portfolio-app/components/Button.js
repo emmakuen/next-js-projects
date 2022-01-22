@@ -7,7 +7,12 @@ const Button = ({ text, routename, color, backgroundColor, borderColor }) => {
   return (
     <>
       <button className="action-button">
-        <NavLink name={text} href={route.href} color={color} />
+        <NavLink
+          name={text}
+          href={route.href}
+          color={color}
+          hoverColor={color}
+        />
       </button>
 
       <style jsx>{`
