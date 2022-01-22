@@ -59,7 +59,29 @@ const GlassSidebar = () => {
           );
           border: 3px solid rgba(255, 255, 255, 0.8);
           border-radius: 20px;
-          backdrop-filter: blur(2rem);
+          backdrop-filter: blur(5px);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .glass-sidebar:hover {
+          transform: translate(-5px, -5px);
+        }
+
+        .glass-sidebar::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 30px;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.5);
+          transform: skewX(20deg) translateX(160px);
+          transition: 0.6s;
+        }
+
+        .glass-sidebar:hover::before {
+          transform: skewX(20deg) translateX(-140px);
         }
 
         .icon {

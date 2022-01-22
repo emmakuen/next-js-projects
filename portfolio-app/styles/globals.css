@@ -103,6 +103,13 @@ svg {
   right: -45px;
 }
 
+.home.styled-dots.small {
+  position: absolute;
+  right: 20px;
+}
+
+/* --------------Glass Sidebar Styles ----------------- */
+
 .tableau-icon {
   font-size: 2rem !important;
 }
@@ -111,15 +118,14 @@ svg {
   filter: brightness(0.8) sepia(1) hue-rotate(-20deg) saturate(10);
 }
 
-
-.home.styled-dots.small {
-  position: absolute;
-  right: 20px;
-}
-
 .fa:hover {
   color: var(--orange) !important;
+}
 
+.tableau-icon:hover,
+.fa:hover {
+  transform: scale(1.15);
+  transition: 0.3s ease;
 }
 
 .fa:active,
