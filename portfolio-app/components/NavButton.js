@@ -18,7 +18,8 @@ const NavButton = ({ route }) => {
         }
 
         .nav-button:hover {
-          filter: saturate(2.2);
+          transform: scale(1.05);
+          transition: 0.3s ease-in;
         }
       `}</style>
     </>

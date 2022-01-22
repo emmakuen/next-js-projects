@@ -6,12 +6,12 @@ const Button = ({ text, routename, color, backgroundColor, borderColor }) => {
   const route = routes.filter((route) => route.name === routename)[0];
   return (
     <>
-      <button className="nav-button">
+      <button className="action-button">
         <NavLink name={text} href={route.href} color={color} />
       </button>
 
       <style jsx>{`
-        .nav-button {
+        .action-button {
           border-radius: 20px;
           width: 168px;
           height: 56px;
@@ -21,8 +21,9 @@ const Button = ({ text, routename, color, backgroundColor, borderColor }) => {
           margin-right: 30px;
         }
 
-        .nav-button:hover {
-          filter: saturate(2.2);
+        .action-button:hover {
+          transform: scale(1.05);
+          transition: 0.3s ease-in;
         }
       `}</style>
     </>
