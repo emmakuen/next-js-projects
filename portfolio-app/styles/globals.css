@@ -37,31 +37,32 @@ body {
 
 /* ----------------Background Styling------------- */
 .lower-left-circle {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   font-size: 45vw;
 }
 
 .right-middle-circle {
-  position: absolute;
+  position: fixed;
   right: -30vw;
   bottom: -30vh;
   font-size: 85vw;
 }
 
 .lower-right-polygon {
-  position: absolute;
+  position: fixed;
   right: -10vw;
   bottom: -25vh;
   font-size: 65vw;
 }
 
 .upper-circle {
-  position: absolute;
+  position: fixed;
   left: -15vw;
   top: -15vh;
   font-size: 45vw;
+  transition: 1s ease;
 }
 
 svg {
@@ -98,6 +99,7 @@ svg {
 .home.styled-dots.top {
   top: 4.5vh;
   right: 32px;
+  transition: 0.3s ease;
 }
 
 .home.styled-dots.small {
@@ -106,7 +108,7 @@ svg {
   top: 40px;
 }
 
-.bottom {
+.home.styled-dots.bottom {
   bottom: 26px;
   left: 0;
 }
@@ -134,4 +136,41 @@ svg {
 .fa:active,
 .tableau-icon:active {
   transform: scale(0.9);
+}
+
+
+@media screen and (max-width: 1200px) {
+  .home.left-eclipse {
+    font-size: 350px;
+    margin-left: 0;
+  }
+
+  .upper-circle {
+    font-size: 800px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .home.styled-dots.top {
+    right: 60px;
+    top: 110px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+
+  .home.right-eclipse {
+    top: 250px;
+    right: -100px;
+  }
+
+  .home.left-eclipse {
+    display: none;
+  }
+
+  .home.styled-dots.bottom {
+    position: fixed;
+    bottom: 60px;
+    left: 60px;
+  }
 }

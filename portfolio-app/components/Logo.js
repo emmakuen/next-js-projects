@@ -18,7 +18,7 @@ const Logo = () => {
       <style jsx>{`
         .logo {
           position: absolute;
-          top: -12px;
+          top: -5px;
           cursor: pointer;
         }
       `}</style>

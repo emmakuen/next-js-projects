@@ -10,14 +10,18 @@ const Footer = () => {
       </footer>
       <style jsx>{`
         footer {
-          display: flex;
-          justify-content: center;
-        }
-        .copyright-info {
           position: fixed;
+          width: 300px;
+          left: 50%;
+          bottom: 0;
+          margin: 5vh 0 3vh;
+          margin-left: -150px;
+          text-align: center;
+        }
+
+        .copyright-info {
           font-size: 14px;
           color: ${colors.grey};
-          bottom: 2rem;
         }
       `}</style>
     </>

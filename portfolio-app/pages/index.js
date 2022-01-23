@@ -81,6 +81,29 @@ export default function HomePage() {
           margin: 0;
           padding: 0;
         }
+
+        @media only screen and (max-width: 1100px) {
+          .sidebar-container {
+            position: static;
+          }
+        }
+        @media only screen and (max-width: 940px) {
+          .home {
+            flex-direction: column-reverse;
+          }
+
+          .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+          }
+
+          .intro-container {
+            margin: auto;
+            width: 100%;
+          }
+        }
       `}</style>
     </>
   );

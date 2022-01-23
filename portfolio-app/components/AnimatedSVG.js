@@ -356,6 +356,23 @@ const AnimatedSVG = () => {
           <rect width="778.6" height="678.194" fill="white" />
         </clipPath>
       </defs>
+      <style jsx>{`
+        svg {
+          transition: 0.5s ease;
+        }
+        @media screen and (max-width: 1200px) {
+          svg {
+            height: 250px;
+            margin-left: -50px;
+          }
+        }
+
+        @media screen and (max-width: 940px) {
+          svg {
+            display: none;
+          }
+        }
+      `}</style>
     </svg>
   );
 };

@@ -62,6 +62,7 @@ const GlassSidebar = () => {
           backdrop-filter: blur(5px);
           position: relative;
           overflow: hidden;
+          transition: 0.3s ease-in-out;
         }
 
         .glass-sidebar:hover {
@@ -86,6 +87,27 @@ const GlassSidebar = () => {
 
         .icon {
           padding: 2rem;
+        }
+
+        @media only screen and (max-width: 1100px) {
+          .glass-sidebar {
+            flex-direction: row;
+            height: 70px;
+            width: 500px;
+            position: fixed;
+            bottom: 10vh;
+            left: 50%;
+            margin-left: -250px;
+          }
+
+          .glass-sidebar::before {
+            transform: skewX(20deg) translateX(510px);
+            transition: 1.5s;
+          }
+
+          .glass-sidebar:hover::before {
+            transform: skewX(20deg) translateX(-510px);
+          }
         }
       `}</style>
     </div>
