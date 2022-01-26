@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import styles from "../styles/AnimatedSVG.module.css";
 
 const AnimatedSVG = () => {
   return (
     <svg
       width="390"
       height="340"
+      className={styles.animatedSVG}
       viewBox="0 0 779 679"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -356,23 +358,6 @@ const AnimatedSVG = () => {
           <rect width="778.6" height="678.194" fill="white" />
         </clipPath>
       </defs>
-      <style jsx>{`
-        svg {
-          transition: 0.5s ease;
-        }
-        @media screen and (max-width: 1200px) {
-          svg {
-            height: 250px;
-            margin-left: -50px;
-          }
-        }
-
-        @media screen and (max-width: 940px) {
-          svg {
-            display: none;
-          }
-        }
-      `}</style>
     </svg>
   );
 };

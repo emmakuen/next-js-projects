@@ -17,9 +17,8 @@ const Logo = () => {
       </Link>
       <style jsx>{`
         .logo {
-          position: absolute;
-          top: -5px;
           cursor: pointer;
+          margin-top: -5px;
         }
       `}</style>
     </div>

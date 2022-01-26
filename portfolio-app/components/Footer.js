@@ -13,7 +13,7 @@ const Footer = () => {
           position: fixed;
           width: 300px;
           left: 50%;
-          bottom: 0;
+          bottom: 30px;
           margin: 5vh 0 3vh;
           margin-left: -150px;
           text-align: center;
@@ -21,7 +21,15 @@ const Footer = () => {
 
         .copyright-info {
           font-size: 14px;
-          color: ${colors.grey};
+          color: ${colors.lightGrey};
+        }
+
+        @media only screen and (max-width: 940px) {
+          footer {
+            position: absolute;
+            width: 300px;
+            left: 50%;
+          }
         }
       `}</style>
     </>

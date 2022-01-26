@@ -1,0 +1,25 @@
+.animatedSVG {
+    transition: 0.5s ease;
+}
+
+@media screen and (max-width: 1200px) {
+    .animatedSVG {
+        height: 250px;
+        margin-left: -50px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .animatedSVG {
+        height: 30vw;
+        transform: scale(-1, 1);
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .animatedSVG {
+        height: 50vw;
+        margin-right: 50px;
+    }
+}

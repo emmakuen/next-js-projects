@@ -1,0 +1,186 @@
+.home {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.image-container {
+    width: 550px;
+    position: relative;
+    margin-top: 17vh;
+}
+
+.animation-container {
+    position: absolute;
+    top: 50px;
+    left: 80px;
+}
+
+.intro-container {
+    padding-top: 17vh;
+    width: 550px;
+}
+
+.sidebar-container {
+    position: relative;
+}
+
+.button-container {
+    display: flex;
+}
+
+.ghost-button-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 30px;
+    padding: 0;
+}
+
+/* ---------------- Home Styling------------- */
+
+.left-eclipse {
+    margin-left: -28px;
+    font-size: 390px;
+}
+
+.right-eclipse {
+    font-size: 335px;
+    position: absolute;
+    top: 20vh;
+}
+
+.styled-dots {
+    position: absolute;
+    font-size: 104px;
+}
+
+.styled-dots.top {
+    top: 4.5vh;
+    right: 32px;
+    transition: 0.3s ease;
+}
+
+.styled-dots.small {
+    position: absolute;
+    right: -12px;
+    top: 40px;
+}
+
+.styled-dots.bottom {
+    bottom: 26px;
+    left: 0;
+}
+
+/* -------------- Responsive ----------------- */
+
+@media screen and (max-width: 1200px) {
+    .left-eclipse {
+        font-size: 350px;
+        margin: 0;
+    }
+
+    .upper-circle {
+        font-size: 800px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .styled-dots.top {
+        left: 60px;
+        bottom: 60px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .home {
+        flex-direction: column;
+        margin-top: 5%;
+    }
+
+    .sidebar-container {
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: 60px;
+        margin-left: 30vw;
+    }
+
+    .animation-container {
+        position: relative;
+    }
+
+    .intro-container {
+        margin: auto;
+        margin-top: -250px;
+        width: 100%;
+    }
+
+    .right-eclipse {
+        display: none;
+    }
+
+    .left-eclipse {
+        position: absolute;
+        height: 30vw;
+        left: 140px;
+    }
+
+    .styled-dots.bottom {
+        margin-left: 85vw;
+    }
+
+    .styled-dots.top {
+        left: 10px;
+        top: 100px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .image-container {
+        margin: 0;
+        margin-top: 20px;
+        margin-left: -20vw;
+    }
+
+    .animation-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .intro-container {
+        margin-top: -50px;
+    }
+
+    .left-eclipse {
+        height: 50vw;
+        margin-top: 4vh;
+        margin-left: -40vw;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .ghost-button-container {
+        margin: 0;
+    }
+
+    .styled-dots {
+        font-size: 15vw;
+    }
+
+    .styled-dots.small {
+        top: 57px;
+        left: 140px;
+    }
+
+}

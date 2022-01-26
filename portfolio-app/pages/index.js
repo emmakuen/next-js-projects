@@ -8,21 +8,23 @@ import Button from "../components/Button";
 import AnimatedSVG from "../components/AnimatedSVG";
 import { colors } from "../utils/colors";
 
+import styles from "../styles/Home.module.css";
+
 export default function HomePage() {
   return (
     <>
-      <main className="home">
-        <section className="image-container">
-          <LeftEclipse className="home left-eclipse" />
-          <div className="animation-container">
+      <main className={styles.home}>
+        <section className={styles["image-container"]}>
+          <LeftEclipse className={`${styles["left-eclipse"]}`} />
+          <div className={styles["animation-container"]}>
             <AnimatedSVG />
           </div>
-          <StyledDots className="home styled-dots bottom" />
+          <StyledDots className={`${styles["styled-dots"]} ${styles.bottom}`} />
         </section>
 
-        <section className="intro-container">
+        <section className={styles["intro-container"]}>
           <Title />
-          <div className="button-container">
+          <div className={styles["button-container"]}>
             <Button
               text="Collaborate"
               routename="Contact Me"
@@ -30,81 +32,27 @@ export default function HomePage() {
               backgroundColor={colors.blue}
               borderColor={colors.blue}
             />
-            <div className="ghost-button-container">
+            <div className={styles["ghost-button-container"]}>
               <Button
                 text="Learn More"
                 routename="About"
                 color={colors.orange}
                 backgroundColor={colors.backgroundColor}
                 borderColor={colors.orange}
-                className="ghost-button"
+                className={styles["ghost-button"]}
               />
-              <SmallStyledDots className="home small styled-dots" />
+              <SmallStyledDots
+                className={`${styles["styled-dots"]} ${styles.small}`}
+              />
             </div>
           </div>
         </section>
-        <section className="sidebar-container">
-          <RightEclipse className="home right-eclipse" />
-          <StyledDots className="home styled-dots top" />
-          <GlassSidebar className="glass" />
+        <section className={styles["sidebar-container"]}>
+          <RightEclipse className={`${styles["right-eclipse"]}`} />
+          <StyledDots className={`${styles["styled-dots"]} ${styles.top}`} />
+          <GlassSidebar className={styles.glass} />
         </section>
       </main>
-      <style jsx>{`
-        .home {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
-
-        .image-container {
-          width: 550px;
-          position: relative;
-        }
-
-        .animation-container {
-          position: absolute;
-          top: 20vh;
-          left: 80px;
-        }
-
-        .intro-container {
-          width: 550px;
-        }
-
-        .sidebar-container {
-          position: relative;
-        }
-
-        .ghost-button-container {
-          position: relative;
-          display: inline-block;
-          margin: 0;
-          padding: 0;
-        }
-
-        @media only screen and (max-width: 1100px) {
-          .sidebar-container {
-            position: static;
-          }
-        }
-        @media only screen and (max-width: 940px) {
-          .home {
-            flex-direction: column-reverse;
-          }
-
-          .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-          }
-
-          .intro-container {
-            margin: auto;
-            width: 100%;
-          }
-        }
-      `}</style>
     </>
   );
 }

@@ -23,7 +23,6 @@ const Button = ({ text, routename, color, backgroundColor, borderColor }) => {
           border: 2px ${borderColor} solid;
           background-color: ${backgroundColor};
           margin-top: 30px;
-          margin-right: 30px;
         }
 
         .action-button:hover {
