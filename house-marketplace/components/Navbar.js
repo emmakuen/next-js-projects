@@ -20,16 +20,10 @@ const Navbar = () => {
       <nav className="navbarNav">
         <ul className="navbarListItems">
           <li className="navbarListItem">
-            <Link href="/explore" passHref>
+            <Link href="/" passHref>
               <a>
-                <ExploreIcon
-                  width="36"
-                  height="36"
-                  fill={styleIcon("/explore")}
-                />
-                <p className={isActive("navbarListItemName", "/explore")}>
-                  Explore
-                </p>
+                <ExploreIcon width="36" height="36" fill={styleIcon("/")} />
+                <p className={isActive("navbarListItemName", "/")}>Explore</p>
               </a>
             </Link>
           </li>

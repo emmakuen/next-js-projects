@@ -4,6 +4,8 @@ import ArrowRightIcon from "../public/assets/svg/keyboardArrowRightIcon.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useAuthContext } from "../contexts/authContext";
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -13,19 +15,27 @@ const SignUp = () => {
   });
   const { name, email, password } = formData;
 
+  const { signup } = useAuthContext();
+
   const router = useRouter();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    signup(name, email, password);
+  };
+
   return (
     <div className="pageContainer">
       <header>
-        <p className="pageHeader">Welcome Back!</p>
+        <p className="pageHeader">Welcome!</p>
       </header>
 
-      <form action="">
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           className="nameInput"
@@ -67,7 +77,7 @@ const SignUp = () => {
 
         <div className="signUpBar">
           <p className="signUpText">Sign In</p>
-          <button className="signInButton">
+          <button type="submit" className="signInButton">
             <ArrowRightIcon fill="#fff" width="34" height="34" />
           </button>
         </div>

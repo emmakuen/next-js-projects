@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import ArrowRightIcon from "../public/assets/svg/keyboardArrowRightIcon.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuthContext } from "../contexts/authContext";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,11 +12,17 @@ const Login = () => {
     password: "",
   });
   const { email, password } = formData;
+  const { login } = useAuthContext();
 
   const router = useRouter();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login(email, password);
   };
 
   return (
@@ -24,7 +31,7 @@ const Login = () => {
         <p className="pageHeader">Welcome Back!</p>
       </header>
 
-      <form action="">
+      <form onSubmit={onSubmit}>
         <input
           type="email"
           className="emailInput"
@@ -59,7 +66,7 @@ const Login = () => {
         </Link>
         <div className="signInBar">
           <p className="signInText">Sign In</p>
-          <button className="signInButton">
+          <button className="signInButton" type="submit">
             <ArrowRightIcon fill="#fff" width="34" height="34" />
           </button>
         </div>
