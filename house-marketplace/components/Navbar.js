@@ -7,6 +7,14 @@ import { useRouter } from "next/router";
 const Navbar = () => {
   const router = useRouter();
 
+  const styleIcon = (path) => {
+    return router.pathname === path ? "#2c2c2c" : "#8f8f8f";
+  };
+
+  const isActive = (className, path) => {
+    return router.pathname === path ? `${className}Active` : className;
+  };
+
   return (
     <footer className="navbar">
       <nav className="navbarNav">
@@ -17,15 +25,9 @@ const Navbar = () => {
                 <ExploreIcon
                   width="36"
                   height="36"
-                  fill={router.pathname === "/explore" ? "#2c2c2c" : "#8f8f8f"}
+                  fill={styleIcon("/explore")}
                 />
-                <p
-                  className={
-                    router.pathname === "/explore"
-                      ? "navbarListItemNameActive"
-                      : "navbarListItemName"
-                  }
-                >
+                <p className={isActive("navbarListItemName", "/explore")}>
                   Explore
                 </p>
               </a>
@@ -34,18 +36,8 @@ const Navbar = () => {
           <li className="navbarListItem">
             <Link href="/offers" passHref>
               <a>
-                <OfferIcon
-                  width="36"
-                  height="36"
-                  fill={router.pathname === "/offers" ? "#2c2c2c" : "#8f8f8f"}
-                />
-                <p
-                  className={
-                    router.pathname === "/offers"
-                      ? "navbarListItemNameActive"
-                      : "navbarListItemName"
-                  }
-                >
+                <OfferIcon width="36" height="36" fill={styleIcon("/offers")} />
+                <p className={isActive("navbarListItemName", "/offers")}>
                   Offers
                 </p>
               </a>
@@ -57,15 +49,9 @@ const Navbar = () => {
                 <PersonOutlineIcon
                   width="36"
                   height="36"
-                  fill={router.pathname === "/profile" ? "#2c2c2c" : "#8f8f8f"}
+                  fill={styleIcon("/profile")}
                 />
-                <p
-                  className={
-                    router.pathname === "/profile"
-                      ? "navbarListItemNameActive"
-                      : "navbarListItemName"
-                  }
-                >
+                <p className={isActive("navbarListItemName", "/profile")}>
                   Profile
                 </p>
               </a>
