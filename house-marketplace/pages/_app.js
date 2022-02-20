@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 import { AuthProvider } from "../contexts/authContext";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <ToastContainer />
     </AuthProvider>
   );
 }

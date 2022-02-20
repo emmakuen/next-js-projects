@@ -40,6 +40,7 @@ const SignUp = () => {
           onChange={onChange}
           value={name}
           placeholder="Name"
+          required
         />
         <input
           type="email"
@@ -49,6 +50,7 @@ const SignUp = () => {
           onChange={onChange}
           value={email}
           placeholder="Email"
+          required
         />
         <div className="passwordInputDiv">
           <input
@@ -59,6 +61,8 @@ const SignUp = () => {
             onChange={onChange}
             name="password"
             id="password"
+            required
+            minLength={6}
           />
           <div className="showPassword">
             <Image

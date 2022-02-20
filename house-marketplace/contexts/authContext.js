@@ -10,6 +10,7 @@ import { useState, createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { app, db } from "../firebase";
 import { routes } from "../lib/routes";
+import { showError } from "../lib/errorMessages";
 
 const AuthContext = createContext();
 
@@ -60,8 +61,9 @@ export const AuthProvider = ({ children }) => {
       await setDoc(doc(db, "users", userCredential.user.uid), formData);
       router.push(routes.explore);
     } catch (err) {
-      setError(err);
-      console.log(err);
+      const errorMessage = err.message.split(" ").pop();
+      console.log(errorMessage);
+      showError(errorMessage);
     }
   };
 
@@ -70,14 +72,15 @@ export const AuthProvider = ({ children }) => {
    * @param {String} password
    */
   const login = (email, password) => {
+    if (!email || !password) return toast.error("Invalid credential");
     signInWithEmailAndPassword(getAuth(app), email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
         router.push(routes.explore);
       })
       .catch((err) => {
-        setError(err);
-        console.log(err);
+        const errorMessage = err.message.split(" ").pop();
+        showError(errorMessage);
       });
   };
 
