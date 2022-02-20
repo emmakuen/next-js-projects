@@ -9,6 +9,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useState, createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { app, db } from "../firebase";
+import { routes } from "../lib/routes";
 
 const AuthContext = createContext();
 
@@ -57,9 +58,10 @@ export const AuthProvider = ({ children }) => {
       // store user data on db
       const formData = { name, email, timestamp: serverTimestamp() };
       await setDoc(doc(db, "users", userCredential.user.uid), formData);
-      router.push("/");
+      router.push(routes.explore);
     } catch (err) {
       setError(err);
+      console.log(err);
     }
   };
 
@@ -71,9 +73,12 @@ export const AuthProvider = ({ children }) => {
     signInWithEmailAndPassword(getAuth(app), email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
-        router.push("/");
+        router.push(routes.explore);
       })
-      .catch(setError);
+      .catch((err) => {
+        setError(err);
+        console.log(err);
+      });
   };
 
   if (loading) return <h1>loading...</h1>;

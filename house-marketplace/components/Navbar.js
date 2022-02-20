@@ -4,6 +4,8 @@ import PersonOutlineIcon from "../public/assets/svg/personOutlineIcon.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { routes } from "../lib/routes";
+
 const Navbar = () => {
   const router = useRouter();
 
@@ -20,32 +22,42 @@ const Navbar = () => {
       <nav className="navbarNav">
         <ul className="navbarListItems">
           <li className="navbarListItem">
-            <Link href="/" passHref>
+            <Link href={routes.explore} passHref>
               <a>
-                <ExploreIcon width="36" height="36" fill={styleIcon("/")} />
-                <p className={isActive("navbarListItemName", "/")}>Explore</p>
+                <ExploreIcon
+                  width="36"
+                  height="36"
+                  fill={styleIcon(routes.explore)}
+                />
+                <p className={isActive("navbarListItemName", routes.explore)}>
+                  Explore
+                </p>
               </a>
             </Link>
           </li>
           <li className="navbarListItem">
-            <Link href="/offers" passHref>
+            <Link href={routes.offers} passHref>
               <a>
-                <OfferIcon width="36" height="36" fill={styleIcon("/offers")} />
-                <p className={isActive("navbarListItemName", "/offers")}>
+                <OfferIcon
+                  width="36"
+                  height="36"
+                  fill={styleIcon(routes.offers)}
+                />
+                <p className={isActive("navbarListItemName", routes.offers)}>
                   Offers
                 </p>
               </a>
             </Link>
           </li>
           <li className="navbarListItem">
-            <Link href="/profile" passHref>
+            <Link href={routes.profile} passHref>
               <a>
                 <PersonOutlineIcon
                   width="36"
                   height="36"
-                  fill={styleIcon("/profile")}
+                  fill={styleIcon(routes.profile)}
                 />
-                <p className={isActive("navbarListItemName", "/profile")}>
+                <p className={isActive("navbarListItemName", routes.profile)}>
                   Profile
                 </p>
               </a>
