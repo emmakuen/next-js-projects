@@ -84,6 +84,11 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
+  const logout = () => {
+    getAuth(app).signOut();
+    router.push(routes.explore);
+  };
+
   if (loading) return <h1>loading...</h1>;
 
   return (
@@ -93,6 +98,7 @@ export const AuthProvider = ({ children }) => {
         error,
         signup,
         login,
+        logout,
       }}
     >
       {children}
