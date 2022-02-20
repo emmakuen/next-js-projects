@@ -4,13 +4,14 @@ import ArrowRightIcon from "../public/assets/svg/keyboardArrowRightIcon.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-const Login = () => {
+const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
-  const { email, password } = formData;
+  const { name, email, password } = formData;
 
   const router = useRouter();
 
@@ -25,6 +26,15 @@ const Login = () => {
       </header>
 
       <form action="">
+        <input
+          type="text"
+          className="nameInput"
+          name="name"
+          id="name"
+          onChange={onChange}
+          value={name}
+          placeholder="Name"
+        />
         <input
           type="email"
           className="emailInput"
@@ -54,22 +64,20 @@ const Login = () => {
             />
           </div>
         </div>
-        <Link href="/forgot-password" passHref>
-          <a className="forgotPasswordLink">Forgot Password</a>
-        </Link>
-        <div className="signInBar">
-          <p className="signInText">Sign In</p>
+
+        <div className="signUpBar">
+          <p className="signUpText">Sign In</p>
           <button className="signInButton">
             <ArrowRightIcon fill="#fff" width="34" height="34" />
           </button>
         </div>
       </form>
       {/* TODO: Google OAuth */}
-      <Link href="/sign-up" passHref>
-        <a className="registerLink">Sign Up Instead</a>
+      <Link href="/login" passHref>
+        <a className="registerLink">Sign In Instead</a>
       </Link>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
