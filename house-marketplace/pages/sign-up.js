@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import ArrowRightIcon from "../public/assets/svg/keyboardArrowRightIcon.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,15 +16,12 @@ const SignUp = () => {
 
   const { signup } = useAuthContext();
 
-  const router = useRouter();
-
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
     signup(name, email, password);
   };
 

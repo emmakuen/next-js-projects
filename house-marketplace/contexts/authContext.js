@@ -5,6 +5,7 @@ import {
   updateProfile,
   onAuthStateChanged,
 } from "firebase/auth";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useState, createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { app, db } from "../firebase";
@@ -39,18 +40,27 @@ export const AuthProvider = ({ children }) => {
    * @param {String} email
    * @param {String} password
    */
-  const signup = (name, email, password) => {
+  const signup = async (name, email, password) => {
     const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user);
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        })
-          .then(router.push("/"))
-          .catch(setError);
-      })
-      .catch(setError);
+    try {
+      // register user
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(userCredential.user);
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      // store user data on db
+      const formData = { name, email, timestamp: serverTimestamp() };
+      await setDoc(doc(db, "users", userCredential.user.uid), formData);
+      router.push("/");
+    } catch (err) {
+      setError(err);
+    }
   };
 
   /**
