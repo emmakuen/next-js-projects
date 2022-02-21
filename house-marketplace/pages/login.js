@@ -1,20 +1,18 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
 import ArrowRightIcon from "../public/assets/svg/keyboardArrowRightIcon.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuthContext } from "../contexts/authContext";
+import useToggle from "../hooks/useToggle";
+import { useState } from "react";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, toggleShowPassword] = useToggle(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const { email, password } = formData;
   const { login } = useAuthContext();
-
-  const router = useRouter();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -60,7 +58,7 @@ const Login = () => {
               width="20"
               height="20"
               alt="show password"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={toggleShowPassword}
             />
           </div>
         </div>

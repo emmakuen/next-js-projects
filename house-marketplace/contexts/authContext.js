@@ -5,12 +5,13 @@ import {
   updateProfile,
   onAuthStateChanged,
 } from "firebase/auth";
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { setDoc, updateDoc, doc, serverTimestamp } from "firebase/firestore";
 import { useState, createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { app, db } from "../firebase";
 import { routes } from "../lib/routes";
 import { showError } from "../lib/errorMessages";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -89,6 +90,26 @@ export const AuthProvider = ({ children }) => {
     router.push(routes.explore);
   };
 
+  /**
+   * @param {String} name
+   * @param {String} email
+   */
+  const update = async (name, email) => {
+    try {
+      if (name === user.displayName) return;
+      // update display name
+      await updateProfile(getAuth().currentUser, {
+        displayName: name,
+      });
+
+      // update in firestore
+      const userRef = doc(db, "users", getAuth().currentUser.uid);
+      await updateDoc(userRef, { name });
+    } catch (err) {
+      toast.error("Could not update profile details");
+    }
+  };
+
   if (loading) return <h1>loading...</h1>;
 
   return (
@@ -99,6 +120,7 @@ export const AuthProvider = ({ children }) => {
         signup,
         login,
         logout,
+        update,
       }}
     >
       {children}
