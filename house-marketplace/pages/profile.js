@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../contexts/authContext";
 import useToggle from "../hooks/useToggle";
+import { withProtected } from "../lib/routes";
 
 const Profile = () => {
   const { user, logout, update } = useAuthContext();
   const [changeDetails, toggleChangeDetails] = useToggle(false);
   const [formData, setFormData] = useState({
-    name: user.displayName,
-    email: user.email,
+    name: user?.displayName,
+    email: user?.email,
   });
 
   const { name, email } = formData;
@@ -50,9 +51,9 @@ const Profile = () => {
             />
             <input
               type="email"
-              className={!changeDetails ? "profileEmail" : "profileEmailActive"}
+              className="profileEmail"
               id="email"
-              disabled={!changeDetails}
+              disabled
               value={email}
               onChange={onChange}
             />
@@ -63,4 +64,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withProtected(Profile);

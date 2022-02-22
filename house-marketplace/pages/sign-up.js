@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useAuthContext } from "../contexts/authContext";
+import { withPublic } from "../lib/routes";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -90,4 +91,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default withPublic(SignUp);

@@ -1,11 +1,12 @@
-import Head from "next/head";
-import Image from "next/image";
+import { withPublic } from "../lib/routes";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+function Home() {
   return (
     <div className={styles.container}>
       <h1>Explore</h1>
     </div>
   );
 }
+
+export default withPublic(Home);

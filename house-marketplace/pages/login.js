@@ -5,6 +5,8 @@ import { useAuthContext } from "../contexts/authContext";
 import useToggle from "../hooks/useToggle";
 import { useState } from "react";
 
+import { withPublic } from "../lib/routes";
+
 const Login = () => {
   const [showPassword, toggleShowPassword] = useToggle(false);
   const [formData, setFormData] = useState({
@@ -80,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withPublic(Login);

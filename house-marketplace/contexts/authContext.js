@@ -62,9 +62,7 @@ export const AuthProvider = ({ children }) => {
       await setDoc(doc(db, "users", userCredential.user.uid), formData);
       router.push(routes.explore);
     } catch (err) {
-      const errorMessage = err.message.split(" ").pop();
-      console.log(errorMessage);
-      showError(errorMessage);
+      showError(err);
     }
   };
 
@@ -80,8 +78,7 @@ export const AuthProvider = ({ children }) => {
         router.push(routes.explore);
       })
       .catch((err) => {
-        const errorMessage = err.message.split(" ").pop();
-        showError(errorMessage);
+        showError(err);
       });
   };
 

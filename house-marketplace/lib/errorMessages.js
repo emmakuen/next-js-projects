@@ -11,8 +11,9 @@ const errors = Object.freeze({
 });
 
 export const showError = (errorStatus) => {
-  if (errorStatus in errors) {
-    toast.error(errors[errorStatus]);
+  const error = errorStatus.message.split(" ").pop();
+  if (error in errors) {
+    toast.error(errors[error]);
   } else {
     toast.error("Something went wrong.");
   }
