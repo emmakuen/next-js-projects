@@ -17,8 +17,8 @@ const Profile = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const submitChange = () => {
-    changeDetails && update(name, email);
+  const submitChange = async () => {
+    changeDetails && (await update(name, email));
     toggleChangeDetails();
   };
 

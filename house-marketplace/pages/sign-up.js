@@ -21,9 +21,9 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    signup(name, email, password);
+    await signup(name, email, password);
   };
 
   return (

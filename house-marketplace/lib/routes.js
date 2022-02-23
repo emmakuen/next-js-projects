@@ -18,7 +18,6 @@ const withPublic = (Component) => {
 
     if (typeof window !== "undefined" && Boolean(user)) {
       router.replace(routes.explore);
-      return <Loader />;
     }
 
     return <Component {...props} />;
@@ -31,7 +30,6 @@ const withProtected = (Component) => {
     const router = useRouter();
     if (typeof window !== "undefined" && !Boolean(user)) {
       router.replace(routes.login);
-      return <Loader />;
     }
 
     return <Component {...props} />;

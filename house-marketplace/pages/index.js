@@ -1,4 +1,4 @@
-import { withPublic } from "../lib/routes";
+import { withProtected } from "../lib/routes";
 import styles from "../styles/Home.module.css";
 
 function Home() {
@@ -9,4 +9,4 @@ function Home() {
   );
 }
 
-export default withPublic(Home);
+export default withProtected(Home);
