@@ -11,11 +11,24 @@ import {
 import {
   setDoc,
   getDoc,
-  updateDoc,
+  // updateDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  startAfter,
   doc,
   serverTimestamp,
 } from "firebase/firestore";
-import { useState, createContext, useContext, useEffect } from "react";
+import {
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 import { useRouter } from "next/router";
 import { app, db } from "../firebase";
 import { routes } from "../lib/routes";
@@ -168,6 +181,43 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const fetchListings = async (categoryName) => {
+    try {
+      // Get reference
+      const listingsRef = collection(db, "listings");
+
+      // Create a query
+      const q = query(
+        listingsRef,
+        where("type", "==", categoryName),
+        orderBy("timestamp", "desc"),
+        limit(10)
+      );
+
+      // Execute query
+      const querySnap = await getDocs(q);
+
+      const listings = [];
+
+      querySnap.forEach((doc) => {
+        listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      return listings;
+    } catch (err) {
+      toast.error("Could not fetch listings");
+      return [];
+    }
+  };
+
+  const memoizedFetchListings = useCallback(async (categoryName) => {
+    const listings = await fetchListings(categoryName);
+    return listings;
+  }, []);
+
   async function _storeUserData(name, email, uid) {
     const formData = { name, email, timestamp: serverTimestamp() };
     await setDoc(doc(db, "users", uid), formData);
@@ -186,6 +236,7 @@ export const AuthProvider = ({ children }) => {
         update,
         resetPassword,
         googleOAuth,
+        memoizedFetchListings,
       }}
     >
       {children}
@@ -193,4 +244,8 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+/**
+ *
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings
+ */
 export const useAuthContext = () => useContext(AuthContext);

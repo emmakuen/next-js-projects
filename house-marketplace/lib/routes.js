@@ -9,6 +9,10 @@ const routes = Object.freeze({
   signUp: "/sign-up",
   forgotPassword: "/forgot-password",
   profile: "/profile",
+  categories: {
+    rent: "/category/rent",
+    sell: "/category/sale",
+  },
 });
 
 const withPublic = (Component) => {
