@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { useAuthContext } from "../contexts/authContext";
 import { withPublic } from "../lib/routes";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,7 @@ const SignUp = () => {
   });
   const { name, email, password } = formData;
 
-  const { signup } = useAuthContext();
+  const { signup, useGoogleOAuth } = useAuthContext();
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -77,13 +78,13 @@ const SignUp = () => {
         </div>
 
         <div className="signUpBar">
-          <p className="signUpText">Sign In</p>
+          <p className="signUpText">Sign Up</p>
           <button type="submit" className="signInButton">
             <ArrowRightIcon fill="#fff" width="34" height="34" />
           </button>
         </div>
       </form>
-      {/* TODO: Google OAuth */}
+      <OAuth />
       <Link href="/login" passHref>
         <a className="registerLink">Sign In Instead</a>
       </Link>

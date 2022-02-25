@@ -6,6 +6,7 @@ import useToggle from "../hooks/useToggle";
 import { useState } from "react";
 
 import { withPublic } from "../lib/routes";
+import OAuth from "../components/OAuth";
 
 const Login = () => {
   const [showPassword, toggleShowPassword] = useToggle(false);
@@ -74,7 +75,7 @@ const Login = () => {
           </button>
         </div>
       </form>
-      {/* TODO: Google OAuth */}
+      <OAuth />
       <Link href="/sign-up" passHref>
         <a className="registerLink">Sign Up Instead</a>
       </Link>

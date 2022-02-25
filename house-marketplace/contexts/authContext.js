@@ -5,8 +5,16 @@ import {
   updateProfile,
   onAuthStateChanged,
   sendPasswordResetEmail,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
-import { setDoc, updateDoc, doc, serverTimestamp } from "firebase/firestore";
+import {
+  setDoc,
+  getDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useState, createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { app, db } from "../firebase";
@@ -139,6 +147,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const googleOAuth = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(getAuth(app), provider);
+      const user = result.user;
+
+      // check if user is registered
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      // if not, register user
+      if (!docSnap.exists()) {
+        await _storeUserData(user.displayName, user.email, user.uid);
+      }
+      router.push(routes.explore);
+    } catch (err) {
+      toast.error("Could not authorize with Google");
+      console.log(err);
+    }
+  };
+
   async function _storeUserData(name, email, uid) {
     const formData = { name, email, timestamp: serverTimestamp() };
     await setDoc(doc(db, "users", uid), formData);
@@ -156,6 +185,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         update,
         resetPassword,
+        googleOAuth,
       }}
     >
       {children}
