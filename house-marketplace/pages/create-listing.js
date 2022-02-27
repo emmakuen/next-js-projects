@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import Loader from "../components/Loader";
+import { useAuthContext } from "../contexts/authContext";
 
 const CreateListing = () => {
   const [geolocationEnabled, setGeolocationEnabled] = useState(false);
+  const { user } = useAuthContext();
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
