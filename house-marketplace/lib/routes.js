@@ -9,6 +9,7 @@ const routes = Object.freeze({
   signUp: "/sign-up",
   forgotPassword: "/forgot-password",
   profile: "/profile",
+  createListing: "/create-listing",
   categories: {
     rent: "/category/rent",
     sell: "/category/sale",
