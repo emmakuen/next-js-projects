@@ -213,9 +213,46 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const fetchOffers = async () => {
+    try {
+      // Get reference
+      const listingsRef = collection(db, "listings");
+
+      // Create a query
+      const q = query(
+        listingsRef,
+        where("offer", "==", true),
+        orderBy("timestamp", "desc"),
+        limit(10)
+      );
+
+      // Execute query
+      const querySnap = await getDocs(q);
+
+      const listings = [];
+
+      querySnap.forEach((doc) => {
+        listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      return listings;
+    } catch (err) {
+      toast.error("Could not fetch listings");
+      return [];
+    }
+  };
+
   const memoizedFetchListings = useCallback(async (categoryName) => {
     const listings = await fetchListings(categoryName);
     return listings;
+  }, []);
+
+  const memoizedFetchOffers = useCallback(async () => {
+    const offers = await fetchOffers();
+    return offers;
   }, []);
 
   async function _storeUserData(name, email, uid) {
@@ -237,6 +274,7 @@ export const AuthProvider = ({ children }) => {
         resetPassword,
         googleOAuth,
         memoizedFetchListings,
+        memoizedFetchOffers,
       }}
     >
       {children}
@@ -246,6 +284,6 @@ export const AuthProvider = ({ children }) => {
 
 /**
  *
- * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchOffers
  */
 export const useAuthContext = () => useContext(AuthContext);
