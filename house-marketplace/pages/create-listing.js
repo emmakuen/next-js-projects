@@ -3,7 +3,7 @@ import { useAuthContext } from "../contexts/authContext";
 
 const CreateListing = () => {
   const [geolocationEnabled, setGeolocationEnabled] = useState(false);
-  const { user } = useAuthContext();
+  const { user, fetchImgUrls } = useAuthContext();
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -41,9 +41,11 @@ const CreateListing = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    const imgUrls = await fetchImgUrls(images);
+    console.log(imgUrls);
   };
 
   const onMutate = (e) => {
