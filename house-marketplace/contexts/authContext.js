@@ -11,6 +11,7 @@ import {
 import {
   setDoc,
   getDoc,
+  addDoc,
   // updateDoc,
   collection,
   getDocs,
@@ -319,6 +320,24 @@ export const AuthProvider = ({ children }) => {
     return imgUrls;
   };
 
+  const createListing = async (formData, imgUrls) => {
+    try {
+      const listing = {
+        ...formData,
+        imgUrls,
+        timestamp: serverTimestamp(),
+      };
+
+      delete listing.images;
+      !listing.offer && delete listing.discountedPrice;
+      const docRef = await addDoc(collection(db, "listings"), listing);
+      toast.success("Listing Saved");
+      router.push(`category/${listing.type}/${docRef.id}`);
+    } catch (err) {
+      toast.error("Failed to save listing");
+    }
+  };
+
   return loading ? (
     <Loader />
   ) : (
@@ -335,6 +354,7 @@ export const AuthProvider = ({ children }) => {
         memoizedFetchListings,
         memoizedFetchOffers,
         fetchImgUrls,
+        createListing,
       }}
     >
       {children}
@@ -344,6 +364,6 @@ export const AuthProvider = ({ children }) => {
 
 /**
  *
- * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchOffers, fetchImgUrls
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchOffers, fetchImgUrls, createListing
  */
 export const useAuthContext = () => useContext(AuthContext);

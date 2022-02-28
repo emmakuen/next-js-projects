@@ -3,7 +3,7 @@ import { useAuthContext } from "../contexts/authContext";
 
 const CreateListing = () => {
   const [geolocationEnabled, setGeolocationEnabled] = useState(false);
-  const { user, fetchImgUrls } = useAuthContext();
+  const { user, fetchImgUrls, createListing } = useAuthContext();
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -43,9 +43,8 @@ const CreateListing = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     const imgUrls = await fetchImgUrls(images);
-    console.log(imgUrls);
+    createListing(formData, imgUrls);
   };
 
   const onMutate = (e) => {

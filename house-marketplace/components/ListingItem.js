@@ -16,7 +16,7 @@ const ListingItem = ({ listing, id, onDelete }) => {
         <a className="categoryListing">
           <div className="categoryListingImg">
             <Image
-              src={listing?.imageUrls[0]}
+              src={listing.imgUrls[0]}
               alt={listing.name}
               layout="fill"
               objectFit="cover"
