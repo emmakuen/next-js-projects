@@ -10,7 +10,7 @@ const ListingItem = ({ listing, id, onDelete }) => {
     <li>
       <Link
         className="categoryListingLink"
-        href={`category/${listing.type}/${id}`}
+        href={`/category/${listing.type}/${id}`}
         passHref
       >
         <a className="categoryListing">
