@@ -220,6 +220,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const fetchListing = async (listingId) => {
+    try {
+      const listingRef = doc(db, "listings", listingId);
+
+      const listingSnap = await getDoc(listingRef);
+      if (listingSnap.exists()) {
+        const listing = listingSnap.data();
+        return listing;
+      }
+    } catch (err) {
+      toast.error("Could not fetch listing");
+      return null;
+    }
+  };
+
   const fetchOffers = async () => {
     try {
       // Get reference
@@ -255,6 +270,11 @@ export const AuthProvider = ({ children }) => {
   const memoizedFetchListings = useCallback(async (categoryName) => {
     const listings = await fetchListings(categoryName);
     return listings;
+  }, []);
+
+  const memoizedFetchListing = useCallback(async (listingId) => {
+    const listing = await fetchListing(listingId);
+    return listing;
   }, []);
 
   const memoizedFetchOffers = useCallback(async () => {
@@ -352,6 +372,7 @@ export const AuthProvider = ({ children }) => {
         resetPassword,
         googleOAuth,
         memoizedFetchListings,
+        memoizedFetchListing,
         memoizedFetchOffers,
         fetchImgUrls,
         createListing,
@@ -364,6 +385,6 @@ export const AuthProvider = ({ children }) => {
 
 /**
  *
- * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchOffers, fetchImgUrls, createListing
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchListing, memoizedFetchOffers, fetchImgUrls, createListing
  */
 export const useAuthContext = () => useContext(AuthContext);

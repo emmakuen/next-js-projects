@@ -10,6 +10,8 @@ const Loader = () => {
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 70vh;
+            width: 100vw;
           }
 
           .lds-circle {

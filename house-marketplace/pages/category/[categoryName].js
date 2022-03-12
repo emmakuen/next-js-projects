@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { useAuthContext } from "../../contexts/authContext";
 import Loader from "../../components/Loader";
@@ -10,6 +10,7 @@ const Category = () => {
   const router = useRouter();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const isMounted = useRef(false);
   const params = router.query;
   const categoryName = params.categoryName;
   const isValidCategory = Object.keys(routes.categories).includes(categoryName);
@@ -36,6 +37,7 @@ const Category = () => {
   };
 
   useEffect(() => {
+    isMounted.current = true;
     if (!isValidCategory) return;
     const fetchData = async () => {
       const listingsData = await memoizedFetchListings(categoryName);
@@ -44,6 +46,8 @@ const Category = () => {
       console.log("listing data", listingsData);
     };
     fetchData();
+
+    return () => (isMounted.current = false);
   }, [isValidCategory, categoryName, memoizedFetchListings]);
 
   if (!isValidCategory) {
