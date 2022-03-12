@@ -267,6 +267,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const fetchLandlord = async (landlordId) => {
+    try {
+      const docRef = doc(db, "users", landlordId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const landlord = docSnap.data();
+        return landlord;
+      } else {
+        toast.error("This landlord data doesn't exist");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Could not fetch landlord data");
+    }
+  };
+
   const memoizedFetchListings = useCallback(async (categoryName) => {
     const listings = await fetchListings(categoryName);
     return listings;
@@ -280,6 +297,11 @@ export const AuthProvider = ({ children }) => {
   const memoizedFetchOffers = useCallback(async () => {
     const offers = await fetchOffers();
     return offers;
+  }, []);
+
+  const memoizedFetchLandlord = useCallback(async (landlordId) => {
+    const landlord = await fetchLandlord(landlordId);
+    return landlord;
   }, []);
 
   async function _storeUserData(name, email, uid) {
@@ -374,6 +396,7 @@ export const AuthProvider = ({ children }) => {
         memoizedFetchListings,
         memoizedFetchListing,
         memoizedFetchOffers,
+        memoizedFetchLandlord,
         fetchImgUrls,
         createListing,
       }}
@@ -385,6 +408,6 @@ export const AuthProvider = ({ children }) => {
 
 /**
  *
- * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchListing, memoizedFetchOffers, fetchImgUrls, createListing
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchListing, memoizedFetchOffers, memoizedFetchLandlord, fetchImgUrls, createListing
  */
 export const useAuthContext = () => useContext(AuthContext);

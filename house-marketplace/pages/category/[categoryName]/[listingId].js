@@ -82,7 +82,7 @@ const ListingPage = () => {
           {/* Map */}
           {user?.uid !== listing.userRef && (
             <Link
-              href={`${routes.contact}/${listing?.userRef}?listingName=${listing?.name}&listingLocation=${listing?.location}`}
+              href={`${routes.contact}/${listing?.userRef}?listingName=${listing?.name}`}
               passHref
             >
               <a className="primaryButton">Contact Landlord</a>
