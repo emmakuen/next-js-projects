@@ -22,12 +22,13 @@ function Home() {
                   alt="rent"
                   layout="fill"
                   objectFit="cover"
+                  priority
                 />
               </div>
               <p className="exploreCategoryName">Places for rent</p>
             </a>
           </Link>
-          <Link href={routes.categories.sell} passHref>
+          <Link href={routes.categories.sale} passHref>
             <a>
               <div className="exploreCategoryImg">
                 <Image

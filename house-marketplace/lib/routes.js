@@ -13,7 +13,7 @@ const routes = Object.freeze({
   contact: "/contact",
   categories: {
     rent: "/category/rent",
-    sell: "/category/sale",
+    sale: "/category/sale",
   },
 });
 
