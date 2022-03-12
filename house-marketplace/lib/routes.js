@@ -10,6 +10,7 @@ const routes = Object.freeze({
   forgotPassword: "/forgot-password",
   profile: "/profile",
   createListing: "/create-listing",
+  contact: "/contact",
   categories: {
     rent: "/category/rent",
     sell: "/category/sale",
