@@ -1,17 +1,24 @@
 import { useRouter } from "next/router";
 import { routes } from "../../../lib/routes";
 import Loader from "../../../components/Loader";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import ShareIcon from "../../../public/assets/svg/shareIcon.svg";
 import { useEffect, useState, useRef } from "react";
 import { useAuthContext } from "../../../contexts/authContext";
 import { formatPrice } from "../../../lib/helpers";
 import Link from "next/link";
+import Script from "next/script";
+import Head from "next/head";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("../../../components/Map"), { ssr: false });
 
 const ListingPage = () => {
   const router = useRouter();
   const { user, memoizedFetchListing } = useAuthContext();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [headLink, setHeadLink] = useState(null);
   const isMounted = useRef(false);
   const [shareLinkCopied, setShareLinkCopied] = useState(false);
   const params = router.query;
@@ -32,7 +39,9 @@ const ListingPage = () => {
   }, [memoizedFetchListing, listingId]);
 
   const onShareClick = () => {
-    navigator.clipboard.writeText(window.location.href);
+    if (window) {
+      navigator.clipboard.writeText(window.location.href);
+    }
     setShareLinkCopied(true);
     setTimeout(() => {
       setShareLinkCopied(false);
@@ -47,50 +56,66 @@ const ListingPage = () => {
   return loading ? (
     <Loader />
   ) : (
-    <main>
-      {/* Slider */}
-      <div className="shareIconDiv" onClick={onShareClick}>
-        <ShareIcon />
-      </div>
-      {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
-      <div className="listingDetails">
-        <p className="listingName">
-          {listing?.name} - {formatPrice("$", price)}
-        </p>
-        <p className="listingLocation">{listing?.location}</p>
-        <p className="listingType">For {listingType}</p>
-        {listing?.offer && (
-          <p className="discountPrice">
-            {formatPrice("$", listing.regularPrice - listing.discountedPrice)}
+    <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossOrigin=""
+        />
+      </Head>
+      <main>
+        <Script
+          src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""
+        />
+        {/* Slider */}
+        <div className="shareIconDiv" onClick={onShareClick}>
+          <ShareIcon />
+        </div>
+        {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
+        <div className="listingDetails">
+          <p className="listingName">
+            {listing?.name} - {formatPrice("$", price)}
           </p>
-        )}
-
-        <ul className="listingDetailsList">
-          <li>
-            {listing?.bedrooms > 1
-              ? `${listing.bedrooms} Bedrooms`
-              : `${listing.bedrooms} Bedroom`}
-          </li>
-          <li>
-            {listing?.bathrooms > 1
-              ? `${listing.bathrooms} Bathrooms`
-              : `${listing.bathrooms} Bathroom`}
-          </li>
-          <li>{listing?.parking && "Parking Spot"}</li>
-          <li>{listing?.furnished && "Furnished"}</li>
-          <p className="listingLocationTitle">Location</p>
-          {/* Map */}
-          {user?.uid !== listing.userRef && (
-            <Link
-              href={`${routes.contact}/${listing?.userRef}?listingName=${listing?.name}`}
-              passHref
-            >
-              <a className="primaryButton">Contact Landlord</a>
-            </Link>
+          <p className="listingLocation">{listing?.location}</p>
+          <p className="listingType">For {listingType}</p>
+          {listing?.offer && (
+            <p className="discountPrice">
+              {formatPrice("$", listing.regularPrice - listing.discountedPrice)}
+            </p>
           )}
-        </ul>
-      </div>
-    </main>
+
+          <ul className="listingDetailsList">
+            <li>
+              {listing?.bedrooms > 1
+                ? `${listing.bedrooms} Bedrooms`
+                : `${listing.bedrooms} Bedroom`}
+            </li>
+            <li>
+              {listing?.bathrooms > 1
+                ? `${listing.bathrooms} Bathrooms`
+                : `${listing.bathrooms} Bathroom`}
+            </li>
+            <li>{listing?.parking && "Parking Spot"}</li>
+            <li>{listing?.furnished && "Furnished"}</li>
+            <p className="listingLocationTitle">Location</p>
+
+            <Map listing={listing} />
+            {user?.uid !== listing.userRef && (
+              <Link
+                href={`${routes.contact}/${listing?.userRef}?listingName=${listing?.name}`}
+                passHref
+              >
+                <a className="primaryButton">Contact Landlord</a>
+              </Link>
+            )}
+          </ul>
+        </div>
+      </main>
+    </>
   );
 };
 

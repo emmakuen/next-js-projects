@@ -16,8 +16,10 @@ const CreateListing = () => {
     regularPrice: "",
     discountedPrice: 0,
     images: {},
-    latitude: 0,
-    longitude: 0,
+    geolocation: {
+      lat: 0,
+      lng: 10,
+    },
   });
 
   const {
@@ -32,8 +34,7 @@ const CreateListing = () => {
     regularPrice,
     discountedPrice,
     images,
-    latitude,
-    longitude,
+    geolocation: { lat, lng },
   } = formData;
 
   useEffect(() => {
@@ -57,6 +58,10 @@ const CreateListing = () => {
     // Handle files
     if (e.target.files) {
       setFormData({ ...formData, images: e.target.files });
+    } else if (e.target.id === "lat" || e.target.id == "lng") {
+      const geolocationCopy = formData.geolocation;
+      geolocationCopy[e.target.id] = e.target.value;
+      setFormData({ ...formData, geolocation: geolocationCopy });
     } else {
       // Handle Text/Booleans/Numbers
       setFormData({
@@ -199,8 +204,8 @@ const CreateListing = () => {
                 <input
                   type="number"
                   className="formInputSmall"
-                  id="latitude"
-                  value={latitude}
+                  id="lat"
+                  value={lat}
                   onChange={onMutate}
                   required
                 />
@@ -210,8 +215,8 @@ const CreateListing = () => {
                 <input
                   type="number"
                   className="formInputSmall"
-                  id="longitude"
-                  value={longitude}
+                  id="lng"
+                  value={lng}
                   onChange={onMutate}
                   required
                 />
