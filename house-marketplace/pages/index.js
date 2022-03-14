@@ -2,6 +2,7 @@ import { withProtected } from "../lib/routes";
 import Link from "next/link";
 import Image from "next/image";
 import { routes } from "../lib/routes";
+import Slider from "../components/Slider";
 
 function Home() {
   return (
@@ -11,7 +12,7 @@ function Home() {
       </header>
 
       <main>
-        {/* Slider */}
+        <Slider />
         <p className="exploreCategoryHeading">Categories</p>
         <div className="exploreCategories">
           <Link href={routes.categories.rent} passHref>

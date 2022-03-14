@@ -35,14 +35,16 @@ const ListingPage = () => {
     isMounted.current = true;
     const fetchData = async () => {
       const listingData = await memoizedFetchListing(listingId);
-      console.log(listingData);
       setListing(listingData);
       setLoading(false);
     };
 
     fetchData();
 
-    return () => (isMounted.current = false);
+    return () => {
+      isMounted.current = false;
+      setListing(null);
+    };
   }, [memoizedFetchListing, listingId]);
 
   const onShareClick = () => {
@@ -64,14 +66,6 @@ const ListingPage = () => {
     <Loader />
   ) : (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossOrigin=""
-        />
-      </Head>
       <main>
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
           {listing.imgUrls.map((url, index) => (

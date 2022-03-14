@@ -193,13 +193,18 @@ export const AuthProvider = ({ children }) => {
       // Get reference
       const listingsRef = collection(db, "listings");
 
-      // Create a query
-      const q = query(
-        listingsRef,
-        where("type", "==", categoryName),
-        orderBy("timestamp", "desc"),
-        limit(10)
-      );
+      let q;
+      if (categoryName) {
+        // Create a query
+        q = query(
+          listingsRef,
+          where("type", "==", categoryName),
+          orderBy("timestamp", "desc"),
+          limit(10)
+        );
+      } else {
+        q = query(listingsRef, orderBy("timestamp", "desc"), limit(5));
+      }
 
       // Execute query
       const querySnap = await getDocs(q);
