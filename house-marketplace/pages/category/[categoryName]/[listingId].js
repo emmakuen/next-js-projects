@@ -1,17 +1,24 @@
 import { useRouter } from "next/router";
-import { routes } from "../../../lib/routes";
-import Loader from "../../../components/Loader";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import ShareIcon from "../../../public/assets/svg/shareIcon.svg";
-import { useEffect, useState, useRef } from "react";
-import { useAuthContext } from "../../../contexts/authContext";
-import { formatPrice } from "../../../lib/helpers";
 import Link from "next/link";
 import Script from "next/script";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
+import { useEffect, useState, useRef } from "react";
+
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+
+import { useAuthContext } from "../../../contexts/authContext";
+import { formatPrice } from "../../../lib/helpers";
+import { routes } from "../../../lib/routes";
+import Loader from "../../../components/Loader";
+import ShareIcon from "../../../public/assets/svg/shareIcon.svg";
+
 const Map = dynamic(() => import("../../../components/Map"), { ssr: false });
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const ListingPage = () => {
   const router = useRouter();
@@ -66,6 +73,19 @@ const ListingPage = () => {
         />
       </Head>
       <main>
+        <Swiper slidesPerView={1} pagination={{ clickable: true }}>
+          {listing.imgUrls.map((url, index) => (
+            <SwiperSlide key={url}>
+              <div
+                style={{
+                  background: `url(${url}) center no-repeat`,
+                  backgroundSize: "cover",
+                }}
+                className="swiperSlideDiv"
+              ></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <Script
           src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
