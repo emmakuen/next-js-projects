@@ -13,7 +13,7 @@ import {
   getDoc,
   addDoc,
   deleteDoc,
-  // updateDoc,
+  updateDoc,
   collection,
   getDocs,
   query,
@@ -401,7 +401,9 @@ export const AuthProvider = ({ children }) => {
 
   const fetchImgUrls = async (images) => {
     const imgUrls = await Promise.all(
-      [...images].map((image) => _storeImage(image))
+      Array.isArray(images)
+        ? images.map((image) => _storeImage(image))
+        : [...images].map((image) => _storeImage(image))
     ).catch((err) => {
       toast.error("Image upload failed");
       console.log("Image upload error", err);
@@ -422,7 +424,7 @@ export const AuthProvider = ({ children }) => {
       !listing.offer && delete listing.discountedPrice;
       const docRef = await addDoc(collection(db, "listings"), listing);
       toast.success("Listing Saved");
-      router.push(`category/${listing.type}/${docRef.id}`);
+      router.push(`/category/${listing.type}/${docRef.id}`);
     } catch (err) {
       toast.error("Failed to save listing");
     }
@@ -436,6 +438,25 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
       toast.error("Something went wrong");
+    }
+  };
+
+  const updateListing = async (listingId, formData, imgUrls) => {
+    try {
+      const listing = {
+        ...formData,
+        imgUrls,
+        timestamp: serverTimestamp(),
+      };
+
+      listing.images && delete listing.images;
+      !listing.offer && delete listing.discountedPrice;
+      const docRef = doc(db, "listings", listingId);
+      await updateDoc(docRef, listing);
+      toast.success("Listing updated");
+      router.push(`/category/${listing.type}/${docRef.id}`);
+    } catch (err) {
+      toast.error("Failed to update listing");
     }
   };
 
@@ -460,6 +481,7 @@ export const AuthProvider = ({ children }) => {
         fetchImgUrls,
         createListing,
         deleteListing,
+        updateListing,
       }}
     >
       {children}
@@ -469,6 +491,6 @@ export const AuthProvider = ({ children }) => {
 
 /**
  *
- * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchUserListings, memoizedFetchListing, memoizedFetchOffers, memoizedFetchLandlord, fetchImgUrls, createListing, deleteListing
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchUserListings, memoizedFetchListing, memoizedFetchOffers, memoizedFetchLandlord, fetchImgUrls, createListing, deleteListing, updateListing
  */
 export const useAuthContext = () => useContext(AuthContext);

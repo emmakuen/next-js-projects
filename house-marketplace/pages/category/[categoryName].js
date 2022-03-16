@@ -43,7 +43,6 @@ const Category = () => {
       const listingsData = await memoizedFetchListings(categoryName);
       setListings(listingsData);
       setLoading(false);
-      console.log("listing data", listingsData);
     };
     fetchData();
 

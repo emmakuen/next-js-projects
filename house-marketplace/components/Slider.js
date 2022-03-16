@@ -35,6 +35,8 @@ const Slider = () => {
 
   if (loading) return <Loader />;
 
+  if (listings?.length === 0) return <></>;
+
   return (
     listings && (
       <>

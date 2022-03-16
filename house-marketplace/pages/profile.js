@@ -58,7 +58,6 @@ const Profile = () => {
   useEffect(() => {
     const fetchListings = async () => {
       const listingsData = await memoizedFetchUserListings();
-      console.log(listingsData);
       setListings(listingsData);
       setLoading(false);
     };

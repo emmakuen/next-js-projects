@@ -68,7 +68,7 @@ const ListingPage = () => {
     <>
       <main>
         <Swiper slidesPerView={1} pagination={{ clickable: true }}>
-          {listing.imgUrls.map((url, index) => (
+          {listing?.imgUrls.map((url, index) => (
             <SwiperSlide key={url}>
               <div
                 style={{
@@ -98,27 +98,30 @@ const ListingPage = () => {
           <p className="listingType">For {listingType}</p>
           {listing?.offer && (
             <p className="discountPrice">
-              {formatPrice("$", listing.regularPrice - listing.discountedPrice)}
+              {formatPrice(
+                "$",
+                listing?.regularPrice - listing?.discountedPrice
+              )}
             </p>
           )}
 
           <ul className="listingDetailsList">
             <li>
               {listing?.bedrooms > 1
-                ? `${listing.bedrooms} Bedrooms`
-                : `${listing.bedrooms} Bedroom`}
+                ? `${listing?.bedrooms} Bedrooms`
+                : `${listing?.bedrooms} Bedroom`}
             </li>
             <li>
               {listing?.bathrooms > 1
-                ? `${listing.bathrooms} Bathrooms`
-                : `${listing.bathrooms} Bathroom`}
+                ? `${listing?.bathrooms} Bathrooms`
+                : `${listing?.bathrooms} Bathroom`}
             </li>
             <li>{listing?.parking && "Parking Spot"}</li>
             <li>{listing?.furnished && "Furnished"}</li>
             <p className="listingLocationTitle">Location</p>
 
             <Map listing={listing} />
-            {user?.uid !== listing.userRef && (
+            {user?.uid !== listing?.userRef && (
               <Link
                 href={`${routes.contact}/${listing?.userRef}?listingName=${listing?.name}`}
                 passHref

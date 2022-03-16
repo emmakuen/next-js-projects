@@ -36,7 +36,6 @@ const Offers = () => {
       const offersData = await memoizedFetchOffers();
       setListings(offersData);
       setLoading(false);
-      console.log("offers data", offersData);
     };
     fetchData();
   }, [memoizedFetchOffers]);
