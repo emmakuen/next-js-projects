@@ -7,8 +7,10 @@ import Home from "../public/assets/svg/homeIcon.svg";
 import Link from "next/link";
 import Loader from "../components/Loader";
 import ListingItem from "../components/ListingItem";
+import { useRouter } from "next/router";
 
 const Profile = () => {
+  const router = useRouter();
   const { user, logout, update, memoizedFetchUserListings, deleteListing } =
     useAuthContext();
   const [changeDetails, toggleChangeDetails] = useToggle(false);
@@ -31,6 +33,10 @@ const Profile = () => {
     }
   };
 
+  const onEdit = (listingId) => {
+    router.push(routes.editListing + `/${listingId}`);
+  };
+
   const renderListings = () =>
     listings?.length > 0 && (
       <>
@@ -42,6 +48,7 @@ const Profile = () => {
               listing={listing.data}
               id={listing.id}
               onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))}
         </ul>
