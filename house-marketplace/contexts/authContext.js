@@ -12,6 +12,7 @@ import {
   setDoc,
   getDoc,
   addDoc,
+  deleteDoc,
   // updateDoc,
   collection,
   getDocs,
@@ -225,6 +226,43 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const fetchUserListings = async () => {
+    try {
+      // Get reference
+      const listingsRef = collection(db, "listings");
+      const userId = getAuth(app).currentUser.uid;
+      if (userId) {
+        // Create a query
+        const q = query(
+          listingsRef,
+          where("userRef", "==", userId),
+          orderBy("timestamp", "desc"),
+          limit(10)
+        );
+
+        // Execute query
+        const querySnap = await getDocs(q);
+
+        const listings = [];
+
+        querySnap.forEach((doc) => {
+          listings.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+
+        return listings;
+      } else {
+        return [];
+      }
+    } catch (err) {
+      toast.error("Could not fetch listings");
+      console.log(err);
+      return [];
+    }
+  };
+
   const fetchListing = async (listingId) => {
     try {
       const listingRef = doc(db, "listings", listingId);
@@ -291,6 +329,11 @@ export const AuthProvider = ({ children }) => {
 
   const memoizedFetchListings = useCallback(async (categoryName) => {
     const listings = await fetchListings(categoryName);
+    return listings;
+  }, []);
+
+  const memoizedFetchUserListings = useCallback(async () => {
+    const listings = await fetchUserListings();
     return listings;
   }, []);
 
@@ -385,6 +428,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteListing = async (listingId) => {
+    try {
+      const docRef = doc(db, "listings", listingId);
+      await deleteDoc(docRef);
+      toast.success("Successfully deleted listing");
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
+  };
+
   return loading ? (
     <Loader />
   ) : (
@@ -399,11 +453,13 @@ export const AuthProvider = ({ children }) => {
         resetPassword,
         googleOAuth,
         memoizedFetchListings,
+        memoizedFetchUserListings,
         memoizedFetchListing,
         memoizedFetchOffers,
         memoizedFetchLandlord,
         fetchImgUrls,
         createListing,
+        deleteListing,
       }}
     >
       {children}
@@ -413,6 +469,6 @@ export const AuthProvider = ({ children }) => {
 
 /**
  *
- * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchListing, memoizedFetchOffers, memoizedFetchLandlord, fetchImgUrls, createListing
+ * @returns {Object} user, error, signup, login, logout, update, resetPassword, googleOAuth, memoizedFetchListings, memoizedFetchUserListings, memoizedFetchListing, memoizedFetchOffers, memoizedFetchLandlord, fetchImgUrls, createListing, deleteListing
  */
 export const useAuthContext = () => useContext(AuthContext);

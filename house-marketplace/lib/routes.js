@@ -11,6 +11,7 @@ const routes = Object.freeze({
   profile: "/profile",
   createListing: "/create-listing",
   contact: "/contact",
+  editListing: "/edit-listing",
   categories: {
     rent: "/category/rent",
     sale: "/category/sale",

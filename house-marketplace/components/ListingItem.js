@@ -1,13 +1,14 @@
 import DeleteIcon from "../public/assets/svg/deleteIcon.svg";
+import EditIcon from "../public/assets/svg/editIcon.svg";
 import BedIcon from "../public/assets/svg/bedIcon.svg";
 import BathtubIcon from "../public/assets/svg/bathtubIcon.svg";
 import Link from "next/link";
 import Image from "next/image";
 import { formatPrice } from "../lib/helpers";
 
-const ListingItem = ({ listing, id, onDelete }) => {
+const ListingItem = ({ listing, id, onDelete, onEdit }) => {
   return (
-    <li>
+    <li className="listingList">
       <Link
         className="categoryListingLink"
         href={`/category/${listing.type}/${id}`}
@@ -49,12 +50,25 @@ const ListingItem = ({ listing, id, onDelete }) => {
         </a>
       </Link>
 
-      {onDelete && (
-        <DeleteIcon
-          className="removeIcon"
-          fill="rgb(231, 70,60)"
-          onClick={onDelete(listing.id, listing.name)}
-        />
+      {(onDelete || onEdit) && (
+        <div className="icons">
+          {onEdit && (
+            <EditIcon
+              fill="#00cc66"
+              height={30}
+              width={30}
+              onClick={() => onEdit(id)}
+            />
+          )}
+          {onDelete && (
+            <DeleteIcon
+              fill="#e7463c"
+              height={30}
+              width={30}
+              onClick={() => onDelete(id)}
+            />
+          )}
+        </div>
       )}
     </li>
   );
