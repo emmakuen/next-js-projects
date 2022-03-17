@@ -5,7 +5,7 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import TableauIcon from "../components/svg/tableau-logo.svg";
-import { colors } from "../utils/colors";
+import { colors } from "../constants/colors";
 
 import styles from "../styles/GlassSidebar.module.css";
 

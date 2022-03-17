@@ -1,4 +1,3 @@
-import { colors } from "../utils/colors";
 import styles from "../styles/Title.module.css";
 
 const Title = () => {

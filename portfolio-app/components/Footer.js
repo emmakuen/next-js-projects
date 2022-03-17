@@ -1,4 +1,4 @@
-import { colors } from "../utils/colors";
+import { colors } from "../constants/colors";
 
 const Footer = () => {
   return (

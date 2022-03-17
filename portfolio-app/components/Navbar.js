@@ -5,23 +5,26 @@ import { useState } from "react";
 import NavLink from "./NavLink";
 import NavButton from "./NavButton";
 import Logo from "./Logo";
-import { colors } from "../utils/colors";
-import { routes } from "../utils/routes";
+import { colors } from "../constants/colors";
+import { routes } from "../constants/routes";
 import styles from "../styles/Navbar.module.css";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [currentPath, setCurrentPath] = useState("Home");
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const router = useRouter();
 
   const styleLinks = (route) => {
-    const isCurrentPath = currentPath === route.name;
+    const isCurrentPath = router.pathname == route.href;
+    console.log(currentPath, route.name);
     return {
       color: isCurrentPath && colors.black,
     };
   };
 
   const styleUnderline = (route) => {
-    const isCurrentPath = currentPath === route.name;
+    const isCurrentPath = router.pathname == route.href;
     return {
       backgroundColor: isCurrentPath && colors.blue,
       visibility: "visible",

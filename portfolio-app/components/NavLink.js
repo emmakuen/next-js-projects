@@ -4,7 +4,7 @@ import Link from "next/link";
 const NavLink = ({ href, name, color, hoverColor }) => {
   return (
     <>
-      <Link href={href}>
+      <Link href={href} passHref>
         <a>{name}</a>
       </Link>
       <style jsx>{`

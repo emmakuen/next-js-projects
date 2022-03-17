@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { routes } from "../utils/routes";
+import { routes } from "../constants/routes";
 
 const Logo = () => {
   return (
