@@ -6,7 +6,7 @@ import GlassSidebar from "../components/GlassSidebar";
 import Title from "../components/Title";
 import Button from "../components/Button";
 import AnimatedSVG from "../components/AnimatedSVG";
-import { colors } from "../utils/colors";
+import { colors } from "../constants/colors";
 
 import styles from "../styles/Home.module.css";
 
